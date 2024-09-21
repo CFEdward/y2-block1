@@ -1,13 +1,20 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 [RequireComponent(typeof(ARPlaneManager))]
 
 public class SceneController : MonoBehaviour
 {
-    [SerializeField] private InputActionReference _togglePlanesAction;
+    [SerializeField]
+    private InputActionReference _togglePlanesAction;
+
+    [SerializeField]
+    private InputActionReference _activateAction;
+
+    [SerializeField]
+    private GameObject _grabbableCube;
 
     private ARPlaneManager _planeManager;
     private bool _isVisible = true;
@@ -27,6 +34,31 @@ public class SceneController : MonoBehaviour
 
         _togglePlanesAction.action.performed += OnTogglePlanesAction;
         _planeManager.planesChanged += OnPlanesChanged;
+        _activateAction.action.performed += OnActivateAction;
+    }
+
+    private void OnActivateAction(InputAction.CallbackContext obj)
+    {
+        SpawnGrabbableCube();
+    }
+
+    private void SpawnGrabbableCube()
+    {
+        Debug.Log("-> SceneController::SpawnGrabbableCube()");
+
+        Vector3 spawnPosition;
+
+        // Iterate through each plane found in the scene
+        foreach (var plane in _planeManager.trackables)
+        {
+            // Detect if the plane is a table, if so, spawn a cube on it
+            if (plane.classification == PlaneClassification.Table)
+            {
+                spawnPosition = plane.transform.position;
+                spawnPosition.y += 0.3f;
+                Instantiate(_grabbableCube, spawnPosition, Quaternion.identity);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -105,5 +137,6 @@ public class SceneController : MonoBehaviour
         Debug.Log("-> SceneController::OnDestroy()");
         _togglePlanesAction.action.performed -= OnTogglePlanesAction;
         _planeManager.planesChanged -= OnPlanesChanged;
+        _activateAction.action.performed -= OnActivateAction;
     }
 }
