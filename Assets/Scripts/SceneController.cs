@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -12,6 +13,9 @@ public class SceneController : MonoBehaviour
 
     [SerializeField]
     private InputActionReference _activateAction;
+
+    [SerializeField]
+    private InputActionReference _switchSceneAction;
 
     [SerializeField]
     private GameObject _grabbableCube;
@@ -32,6 +36,7 @@ public class SceneController : MonoBehaviour
             Debug.LogError("-> Can't find 'ARPlaneManager'");
         }
 
+        _switchSceneAction.action.performed += OnSwitchSceneAction;
         _togglePlanesAction.action.performed += OnTogglePlanesAction;
         _planeManager.planesChanged += OnPlanesChanged;
         _activateAction.action.performed += OnActivateAction;
@@ -40,6 +45,11 @@ public class SceneController : MonoBehaviour
     private void OnActivateAction(InputAction.CallbackContext obj)
     {
         SpawnGrabbableCube();
+    }
+
+    private void OnSwitchSceneAction(InputAction.CallbackContext obj)
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex == 0 ? 1 : 0);
     }
 
     private void SpawnGrabbableCube()
@@ -135,6 +145,7 @@ public class SceneController : MonoBehaviour
     private void OnDestroy()
     {
         Debug.Log("-> SceneController::OnDestroy()");
+        _switchSceneAction.action.performed -= OnSwitchSceneAction;
         _togglePlanesAction.action.performed -= OnTogglePlanesAction;
         _planeManager.planesChanged -= OnPlanesChanged;
         _activateAction.action.performed -= OnActivateAction;
