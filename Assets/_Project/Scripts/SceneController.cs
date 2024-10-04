@@ -49,7 +49,8 @@ public class SceneController : MonoBehaviour
 
     private void OnSwitchSceneAction(InputAction.CallbackContext obj)
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex == 0 ? 1 : 0);
+        //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex == 0 ? 1 : 0);
+        SceneLoader.Instance.LoadNewScene(SceneManager.GetActiveScene().buildIndex == 1 ? "PlanetScene" : "ShipScene");
     }
 
     private void SpawnGrabbableCube()
