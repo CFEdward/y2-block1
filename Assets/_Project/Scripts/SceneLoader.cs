@@ -7,7 +7,10 @@ public class SceneLoader : Singleton<SceneLoader>
 {
     public UnityEvent OnLoadBegin = new UnityEvent();
     public UnityEvent OnLoadEnd = new UnityEvent();
-    public ScreenFader screenFader = null;
+
+    [SerializeField] private ScreenFader screenFader;
+    [SerializeField] private Camera mainCamera;
+    private readonly Color passthroughColor = new Color(0f, 0f, 0f, 0f);
 
     private bool isLoading = false;
 
@@ -21,6 +24,19 @@ public class SceneLoader : Singleton<SceneLoader>
         SceneManager.sceneLoaded -= SetActiveScene;
     }
 
+    private void ChangeCameraBackground()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            mainCamera.clearFlags = CameraClearFlags.SolidColor;
+            mainCamera.backgroundColor = passthroughColor;
+        }
+        else
+        {
+            mainCamera.clearFlags = CameraClearFlags.Skybox;
+        }
+    }
+
     public void LoadNewScene(string sceneName)
     {
         if (!isLoading) StartCoroutine(LoadScene(sceneName));
@@ -31,14 +47,15 @@ public class SceneLoader : Singleton<SceneLoader>
         isLoading = true;
 
         OnLoadBegin?.Invoke();
-        yield return screenFader.StartFadeIn();
+        yield return screenFader.FadeOut();
         yield return StartCoroutine(UnloadCurrent());
 
         // For testing
         yield return new WaitForSeconds(3f);
 
         yield return StartCoroutine(LoadNew(sceneName));
-        yield return screenFader.StartFadeOut();
+        ChangeCameraBackground();
+        yield return screenFader.FadeIn();
         OnLoadEnd?.Invoke();
 
         isLoading = false;
