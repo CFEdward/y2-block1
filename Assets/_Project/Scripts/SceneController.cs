@@ -42,7 +42,13 @@ public class SceneController : MonoBehaviour
         SpawnGrabbableCube();
     }
 
-    private void OnSwitchSceneAction(InputAction.CallbackContext obj)
+    public void OnSwitchSceneAction(InputAction.CallbackContext obj)
+    {
+        //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex == 0 ? 1 : 0);
+        SceneLoader.Instance.LoadNewScene(SceneManager.GetActiveScene().buildIndex == 1 ? "PlanetScene" : "ShipScene");
+    }
+
+    public void SwitchSceneAction()
     {
         //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex == 0 ? 1 : 0);
         SceneLoader.Instance.LoadNewScene(SceneManager.GetActiveScene().buildIndex == 1 ? "PlanetScene" : "ShipScene");
