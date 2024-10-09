@@ -82,7 +82,7 @@ public class SceneController : MonoBehaviour
     private void OnTogglePlanesAction(InputAction.CallbackContext obj)
     {
         isVisible = !isVisible;
-        float fillAlpha = isVisible ? 0.3f : 0f;
+        float fillAlpha = isVisible ? 0f : 0f;
         float lineAlpha = isVisible ? 1f : 0f;
 
         Debug.Log("-> OnTogglePlanesAction() - trackables.count: " + planeManager.trackables.count);

@@ -770,6 +770,10 @@ PrefabInstance:
       propertyPath: fadeColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1486016806731834548, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_PlanePrefab
+      value: 
+      objectReference: {fileID: 1585201990951412, guid: 2ac7b23d19470c3408939caccfa4e769, type: 3}
     - target: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Name
       value: XR Origin Hands (XR Rig)

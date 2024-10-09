@@ -57,7 +57,7 @@ public class ARPlaneColorizer : MonoBehaviour
                 break;
         }
 
-        planeMatColor.a = 0.33f;
+        planeMatColor.a = 0f;
         _planeMeshRenderer.material.color = planeMatColor;
     }
 }
