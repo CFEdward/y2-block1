@@ -16,7 +16,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject grabbableCube;
 
     private ARPlaneManager planeManager;
-    private bool isVisible = true;
+    private bool isVisible = false;
     private int numPlanesAddedOccurred = 0;
 
     // Start is called before the first frame update
