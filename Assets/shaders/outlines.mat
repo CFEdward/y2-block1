@@ -114,8 +114,8 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _color_threshold: 0.5
-    - _depth_threshold: 0.00001
+    - _color_threshold: 0.84
+    - _depth_threshold: 0.05
     - _normal_threshold: 2
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
