@@ -8,7 +8,7 @@ using UnityEngine.XR.ARSubsystems;
 
 public class SceneController : MonoBehaviour
 {
-    [SerializeField] private InputActionReference togglePlanesAction;
+    //[SerializeField] private InputActionReference togglePlanesAction;
     [SerializeField] private InputActionReference activateAction;
 
     [SerializeField] private InputActionReference switchSceneAction;
@@ -16,8 +16,8 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject grabbableCube;
 
     private ARPlaneManager planeManager;
-    private bool isVisible = false;
-    private int numPlanesAddedOccurred = 0;
+    //private bool isVisible = false;
+    //private int numPlanesAddedOccurred = 0;
 
     // Start is called before the first frame update
     private void Start()
@@ -32,8 +32,8 @@ public class SceneController : MonoBehaviour
         }
 
         switchSceneAction.action.performed += OnSwitchSceneAction;
-        togglePlanesAction.action.performed += OnTogglePlanesAction;
-        planeManager.planesChanged += OnPlanesChanged;
+        //togglePlanesAction.action.performed += OnTogglePlanesAction;
+        //planeManager.planesChanged += OnPlanesChanged;
         activateAction.action.performed += OnActivateAction;
     }
 
@@ -79,11 +79,12 @@ public class SceneController : MonoBehaviour
         
     }
 
+    /*
     private void OnTogglePlanesAction(InputAction.CallbackContext obj)
     {
         isVisible = !isVisible;
-        float fillAlpha = isVisible ? 0f : 0f;
-        float lineAlpha = isVisible ? 1f : 0f;
+        float fillAlpha = isVisible ? 0f : 0f; // change these values for debug
+        float lineAlpha = isVisible ? 0f : 0f;
 
         Debug.Log("-> OnTogglePlanesAction() - trackables.count: " + planeManager.trackables.count);
 
@@ -92,7 +93,9 @@ public class SceneController : MonoBehaviour
             SetPlaneAlpha(plane, fillAlpha, lineAlpha);
         }
     }
+    */
 
+    /*
     private void SetPlaneAlpha(ARPlane plane, float fillAlpha, float lineAlpha)
     {
         var meshRenderer = plane.GetComponentInChildren<MeshRenderer>();
@@ -120,7 +123,9 @@ public class SceneController : MonoBehaviour
             lineRenderer.endColor = endColor;
         }
     }
+    */
 
+    /*
     private void OnPlanesChanged(ARPlanesChangedEventArgs args)
     {
         if (args.added.Count > 0)
@@ -136,20 +141,23 @@ public class SceneController : MonoBehaviour
             Debug.Log("-> Num Planes Added Occurred: " + numPlanesAddedOccurred);
         }
     }
+    */
 
+    /*
     private void PrintPlaneLabel(ARPlane plane)
     {
         string label = plane.classification.ToString();
         string log = $"Plane ID: {plane.trackableId}, Label: {label}";
         Debug.Log(log);
     }
+    */
 
     private void OnDestroy()
     {
         Debug.Log("-> SceneController::OnDestroy()");
         switchSceneAction.action.performed -= OnSwitchSceneAction;
-        togglePlanesAction.action.performed -= OnTogglePlanesAction;
-        planeManager.planesChanged -= OnPlanesChanged;
+        //togglePlanesAction.action.performed -= OnTogglePlanesAction;
+        //planeManager.planesChanged -= OnPlanesChanged;
         activateAction.action.performed -= OnActivateAction;
     }
 }

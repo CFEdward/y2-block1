@@ -7,13 +7,13 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARPlaneColorizer : MonoBehaviour
 {
-    private ARPlane _ARPlane;
-    private MeshRenderer _planeMeshRenderer;
+    private ARPlane ARPlane;
+    private MeshRenderer planeMeshRenderer;
 
     private void Awake()
     {
-        _ARPlane = GetComponent<ARPlane>();
-        _planeMeshRenderer = GetComponent<MeshRenderer>();
+        ARPlane = GetComponent<ARPlane>();
+        planeMeshRenderer = GetComponent<MeshRenderer>();
     }
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class ARPlaneColorizer : MonoBehaviour
     {
         Color planeMatColor = Color.gray;
 
-        switch (_ARPlane.classification)
+        switch (ARPlane.classification)
         {
             case PlaneClassification.Floor:
                 planeMatColor = Color.green;
@@ -58,6 +58,11 @@ public class ARPlaneColorizer : MonoBehaviour
         }
 
         planeMatColor.a = 0f;
-        _planeMeshRenderer.material.color = planeMatColor;
+        Color transparent = Color.white;
+        transparent.a = 0f;
+        planeMeshRenderer.material.color = planeMatColor;
+        var lineRenderer = ARPlane.GetComponentInChildren<LineRenderer>();
+        lineRenderer.startColor = transparent;
+        lineRenderer.endColor = transparent;
     }
 }
