@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class sampleSelector : MonoBehaviour
 {
     [SerializeField] private List<GameObject> collectedSamples;
     [SerializeField] private int currentSample;
 
+
+    public UnityEvent<List<GameObject>> updateObjects;
 
     public static sampleSelector Instance { get; private set; }
 
@@ -31,6 +34,10 @@ public class sampleSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (collectedSamples != null)
+        {
+            updateObjects.Invoke(collectedSamples);
+        }
         foreach (Transform child in transform)
         {
             if (!collectedSamples.Contains(child.gameObject))
@@ -74,6 +81,7 @@ public class sampleSelector : MonoBehaviour
         Debug.Log("dit werkt ook");
         collectedSamples.Add(sampleToAdd);
         sampleToAdd.transform.SetParent(transform);
+        updateObjects.Invoke(collectedSamples);
         showSample(currentSample);
     }
 
