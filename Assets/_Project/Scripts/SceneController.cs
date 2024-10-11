@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -15,8 +16,8 @@ public class SceneController : MonoBehaviour
     [SerializeField] private bool debugMode = true;
 
     private XRInteractionManager interactionManager;
-    private List<Collider> colliders = new List<Collider>();
-    private List<RaycastHit> raycastHits = new List<RaycastHit>();
+    private List<Collider> colliders = new();
+    private List<RaycastHit> raycastHits = new();
 
     //[SerializeField] private InputActionReference togglePlanesAction;
     [SerializeField] private InputActionReference rightActivateAction;
@@ -30,6 +31,9 @@ public class SceneController : MonoBehaviour
 
     [SerializeField] private NearFarInteractor leftNearFarInteractor;   // temporary
     private CurveInteractionCaster leftCurveInteractionCaster;          //
+
+    private ARAnchorManager anchorManager;
+    private List<ARAnchor> anchors = new();
 
     private ARPlaneManager planeManager;
     //private bool isVisible = false;
@@ -49,11 +53,29 @@ public class SceneController : MonoBehaviour
             Debug.LogError("-> Can't find 'ARPlaneManager'");
         }
 
+        anchorManager = GetComponent<ARAnchorManager>();
+
+        if (anchorManager == null)
+        {
+            Debug.LogError("-> Can't find 'ARAnchorManager'");
+        }
+
         switchSceneAction.action.performed += OnSwitchSceneAction;
         //togglePlanesAction.action.performed += OnTogglePlanesAction;
         //planeManager.planesChanged += OnPlanesChanged;
+        anchorManager.anchorsChanged += OnAnchorsChanged;
         leftActivateAction.action.performed += OnLeftActivateAction;
         rightActivateAction.action.performed += OnRightActivateAction;
+    }
+
+    private void OnAnchorsChanged(ARAnchorsChangedEventArgs obj)
+    {
+        // remove any anchors that have been removed outside our control, such as during a session reset
+        foreach (var removedAnchor in obj.removed)
+        {
+            anchors.Remove(removedAnchor);
+            Destroy(removedAnchor.gameObject);
+        }
     }
 
     private void OnLeftActivateAction(InputAction.CallbackContext obj)
@@ -70,6 +92,22 @@ public class SceneController : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(raycastHits[0].normal, Vector3.up);
             GameObject instance = Instantiate(objectToSpawn, raycastHits[0].point, rotation);
 
+            if (instance.GetComponent<ARAnchor>() == null)
+            {
+                ARAnchor anchor = instance.AddComponent<ARAnchor>();
+
+                if (anchor != null)
+                {
+                    Debug.Log("-> CreateAnchoredObject() - anchor added!");
+                    anchors.Add(anchor);
+                }
+                else
+                {
+                    Debug.LogError("-> CreateAnchoredObject() - anchor is null!");
+                }
+            }
+
+            colliders.Clear();
             raycastHits.Clear();
         }
         else
@@ -200,6 +238,7 @@ public class SceneController : MonoBehaviour
         switchSceneAction.action.performed -= OnSwitchSceneAction;
         //togglePlanesAction.action.performed -= OnTogglePlanesAction;
         //planeManager.planesChanged -= OnPlanesChanged;
+        anchorManager.anchorsChanged -= OnAnchorsChanged;
         leftActivateAction.action.performed -= OnLeftActivateAction;
         rightActivateAction.action.performed -= OnRightActivateAction;
     }
