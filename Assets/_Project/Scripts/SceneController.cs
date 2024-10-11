@@ -1,19 +1,27 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 [RequireComponent(typeof(ARPlaneManager))]
 
 public class SceneController : MonoBehaviour
 {
+    private XRInteractionManager interactionManager;
+    private List<Collider> colliders;
+    private List<RaycastHit> raycastHits;
+
     //[SerializeField] private InputActionReference togglePlanesAction;
     [SerializeField] private InputActionReference activateAction;
 
     [SerializeField] private InputActionReference switchSceneAction;
 
     [SerializeField] private GameObject grabbableCube;
+    [SerializeField] private NearFarInteractor nearFarInteractor;
 
     private ARPlaneManager planeManager;
     //private bool isVisible = false;
@@ -23,6 +31,7 @@ public class SceneController : MonoBehaviour
     private void Start()
     {
         Debug.Log("-> SceneController::Start()");
+        interactionManager = FindFirstObjectByType<XRInteractionManager>();
 
         planeManager = GetComponent<ARPlaneManager>();
 
@@ -76,7 +85,13 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+        if (nearFarInteractor.farInteractionCaster.TryGetColliderTargets(interactionManager, colliders, raycastHits))
+        {
+            foreach (var raycastHit in raycastHits)
+            {
+                Debug.Log("-> Hit detected! - name: " + raycastHit.transform.name);
+            }
+        }
     }
 
     /*
