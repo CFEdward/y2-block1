@@ -1,5 +1,7 @@
 ## Unity ##
 
+*.terrain.asset binary
+
 *.cs diff=csharp text
 *.cginc text
 *.shader text
@@ -13,7 +15,6 @@
 *.asset merge=unityyamlmerge eol=lf
 *.meta merge=unityyamlmerge eol=lf
 *.controller merge=unityyamlmerge eol=lf
-Terrain.asset merge=unityyamlmerge eol=lf
 
 
 ## git-lfs ##
