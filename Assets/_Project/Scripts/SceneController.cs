@@ -6,32 +6,41 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Interactors.Casters;
 
 [RequireComponent(typeof(ARPlaneManager))]
 
 public class SceneController : MonoBehaviour
 {
+    [SerializeField] private bool debugMode = true;
+
     private XRInteractionManager interactionManager;
-    private List<Collider> colliders;
-    private List<RaycastHit> raycastHits;
+    private List<Collider> colliders = new List<Collider>();
+    private List<RaycastHit> raycastHits = new List<RaycastHit>();
 
     //[SerializeField] private InputActionReference togglePlanesAction;
-    [SerializeField] private InputActionReference activateAction;
+    [SerializeField] private InputActionReference rightActivateAction;
+    [SerializeField] private InputActionReference leftActivateAction;
 
     [SerializeField] private InputActionReference switchSceneAction;
 
+    [SerializeField] private GameObject objectToSpawn;
+
     [SerializeField] private GameObject grabbableCube;
-    [SerializeField] private NearFarInteractor nearFarInteractor;
+
+    [SerializeField] private NearFarInteractor leftNearFarInteractor;   // temporary
+    private CurveInteractionCaster leftCurveInteractionCaster;          //
 
     private ARPlaneManager planeManager;
     //private bool isVisible = false;
     //private int numPlanesAddedOccurred = 0;
 
     // Start is called before the first frame update
-    private void Start()
+    protected void Start()
     {
         Debug.Log("-> SceneController::Start()");
         interactionManager = FindFirstObjectByType<XRInteractionManager>();
+        leftCurveInteractionCaster = leftNearFarInteractor.GetComponent<CurveInteractionCaster>();
 
         planeManager = GetComponent<ARPlaneManager>();
 
@@ -43,10 +52,33 @@ public class SceneController : MonoBehaviour
         switchSceneAction.action.performed += OnSwitchSceneAction;
         //togglePlanesAction.action.performed += OnTogglePlanesAction;
         //planeManager.planesChanged += OnPlanesChanged;
-        activateAction.action.performed += OnActivateAction;
+        leftActivateAction.action.performed += OnLeftActivateAction;
+        rightActivateAction.action.performed += OnRightActivateAction;
     }
 
-    private void OnActivateAction(InputAction.CallbackContext obj)
+    private void OnLeftActivateAction(InputAction.CallbackContext obj)
+    {
+        CheckIfRayHitsCollider();
+    }
+
+    private void CheckIfRayHitsCollider()
+    {
+        if (leftCurveInteractionCaster.TryGetColliderTargets(interactionManager, colliders, raycastHits))
+        {
+            Debug.Log("-> Hit detected! - name: " + raycastHits[0].transform.name);
+
+            Quaternion rotation = Quaternion.LookRotation(raycastHits[0].normal, Vector3.up);
+            GameObject instance = Instantiate(objectToSpawn, raycastHits[0].point, rotation);
+
+            raycastHits.Clear();
+        }
+        else
+        {
+            Debug.LogFormat("-> No hit detected!");
+        }
+    }
+
+    private void OnRightActivateAction(InputAction.CallbackContext obj)
     {
         SpawnGrabbableCube();
     }
@@ -60,7 +92,8 @@ public class SceneController : MonoBehaviour
     public void SwitchSceneAction()
     {
         //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex == 0 ? 1 : 0);
-        SceneLoader.Instance.LoadNewScene(SceneManager.GetActiveScene().buildIndex == 1 ? "PlanetScene" : "ShipScene");
+        if (!debugMode)
+            SceneLoader.Instance.LoadNewScene(SceneManager.GetActiveScene().buildIndex == 1 ? "PlanetScene" : "ShipScene");
     }
 
     private void SpawnGrabbableCube()
@@ -83,15 +116,9 @@ public class SceneController : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    protected void Update()
     {
-        if (nearFarInteractor.farInteractionCaster.TryGetColliderTargets(interactionManager, colliders, raycastHits))
-        {
-            foreach (var raycastHit in raycastHits)
-            {
-                Debug.Log("-> Hit detected! - name: " + raycastHit.transform.name);
-            }
-        }
+
     }
 
     /*
@@ -167,12 +194,13 @@ public class SceneController : MonoBehaviour
     }
     */
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         Debug.Log("-> SceneController::OnDestroy()");
         switchSceneAction.action.performed -= OnSwitchSceneAction;
         //togglePlanesAction.action.performed -= OnTogglePlanesAction;
         //planeManager.planesChanged -= OnPlanesChanged;
-        activateAction.action.performed -= OnActivateAction;
+        leftActivateAction.action.performed -= OnLeftActivateAction;
+        rightActivateAction.action.performed -= OnRightActivateAction;
     }
 }

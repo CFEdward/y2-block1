@@ -145,7 +145,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359941484}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e810454dacb276a479e2773a8e83729c, type: 3}
   m_Name: 
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071041803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e810454dacb276a479e2773a8e83729c, type: 3}
   m_Name: 
@@ -354,6 +354,17 @@ MonoBehaviour:
 --- !u!114 &1110396291 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6766860806068869227, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 657184242565811774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a07ef133a37d140a87cdf1f1c75fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1394891595 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8877177980677234388, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 657184242565811774}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -838,9 +849,25 @@ PrefabInstance:
       value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 4088731066147562137, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: objectToSpawn
+      value: 
+      objectReference: {fileID: 991149468288859528, guid: 96468cbab62dc9b418052758d5a03e49, type: 3}
+    - target: {fileID: 4088731066147562137, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: nearFarInteractor
       value: 
       objectReference: {fileID: 1110396291}
+    - target: {fileID: 4088731066147562137, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: leftActivateAction
+      value: 
+      objectReference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 4088731066147562137, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: rightActivateAction
+      value: 
+      objectReference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 4088731066147562137, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: leftNearFarInteractor
+      value: 
+      objectReference: {fileID: 1394891595}
     - target: {fileID: 4883220357337963943, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Enabled
       value: 0
