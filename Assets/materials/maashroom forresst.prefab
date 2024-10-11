@@ -271,11 +271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2218050437461755081, guid: 249e1ace800a51444b99fff171c31238, type: 3}
       propertyPath: m_VersionIndex
-      value: 377
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 2678835329709126483, guid: 249e1ace800a51444b99fff171c31238, type: 3}
       propertyPath: m_VersionIndex
-      value: 377
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 3442059763968339421, guid: 249e1ace800a51444b99fff171c31238, type: 3}
       propertyPath: m_Name
@@ -283,7 +283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5472937524092718228, guid: 249e1ace800a51444b99fff171c31238, type: 3}
       propertyPath: m_VersionIndex
-      value: 1941
+      value: 1944
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -542,6 +542,10 @@ PrefabInstance:
     - target: {fileID: 3442059763968339421, guid: 249e1ace800a51444b99fff171c31238, type: 3}
       propertyPath: m_Name
       value: massrooom (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554025191599334493, guid: 249e1ace800a51444b99fff171c31238, type: 3}
+      propertyPath: m_VersionIndex
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 5472937524092718228, guid: 249e1ace800a51444b99fff171c31238, type: 3}
       propertyPath: m_VersionIndex
