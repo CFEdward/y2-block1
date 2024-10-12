@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -123,15 +122,16 @@ public class SceneController : MonoBehaviour
 
     public void OnSwitchSceneAction(InputAction.CallbackContext obj)
     {
-        //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex == 0 ? 1 : 0);
-        SceneLoader.Instance.LoadNewScene(SceneManager.GetActiveScene().buildIndex == 1 ? "PlanetScene" : "ShipScene");
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+            SceneLoader.Instance.LoadNewScene("ShipScene");
     }
 
-    public void SwitchSceneAction()
+    public void SwitchSceneOnControllerPickup()
     {
-        //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex == 0 ? 1 : 0);
-        if (!debugMode)
-            SceneLoader.Instance.LoadNewScene(SceneManager.GetActiveScene().buildIndex == 1 ? "PlanetScene" : "ShipScene");
+        if (!debugMode && SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            SceneLoader.Instance.LoadNewScene("PlanetScene");
+        }
     }
 
     private void SpawnGrabbableCube()
@@ -151,12 +151,6 @@ public class SceneController : MonoBehaviour
                 Instantiate(grabbableCube, spawnPosition, Quaternion.identity);
             }
         }
-    }
-
-    // Update is called once per frame
-    protected void Update()
-    {
-
     }
 
     /*
