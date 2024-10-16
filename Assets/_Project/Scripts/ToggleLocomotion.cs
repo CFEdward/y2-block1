@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ToggleMovement : MonoBehaviour
+public class ToggleLocomotion : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    protected void Update()
     {
         gameObject.SetActive(SceneManager.GetActiveScene().buildIndex != 1);
     }
