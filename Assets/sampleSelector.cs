@@ -78,7 +78,6 @@ public class sampleSelector : MonoBehaviour
 
     public void addObject(GameObject sampleToAdd)
     {
-        Debug.Log("dit werkt ook");
         collectedSamples.Add(sampleToAdd);
         sampleToAdd.transform.SetParent(transform);
         updateObjects.Invoke(collectedSamples);
@@ -86,9 +85,15 @@ public class sampleSelector : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
+    public void onSceneSwitch(string sceneName)
     {
+        if (sceneName == "ShipScene")
+        {
+            showSample(currentSample);
+        }else
+        {
+            showSample(-1);
+        }
         
     }
 }
