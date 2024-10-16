@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,6 +38,15 @@ public class SceneController : MonoBehaviour
     private ARPlaneManager planeManager;
     //private bool isVisible = false;
     //private int numPlanesAddedOccurred = 0;
+
+    public static Vector3 playerShipPosition;
+    public static Vector3 playerPlanetPosition;
+    public static bool firstVisit = true;
+
+    protected void OnEnable()
+    {
+        playerShipPosition = transform.position;
+    }
 
     // Start is called before the first frame update
     protected void Start()
@@ -123,15 +133,26 @@ public class SceneController : MonoBehaviour
     public void OnSwitchSceneAction(InputAction.CallbackContext obj)
     {
         if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            playerPlanetPosition = transform.position;
             SceneLoader.Instance.LoadNewScene("ShipScene");
+        }
     }
 
     public void SwitchSceneOnControllerPickup()
     {
         if (!debugMode && SceneManager.GetActiveScene().buildIndex == 1)
         {
-            SceneLoader.Instance.LoadNewScene("PlanetScene");
+            StartCoroutine(SwitchSceneDelay(3f));
         }
+    }
+
+    private IEnumerator SwitchSceneDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        playerShipPosition = transform.position;
+        SceneLoader.Instance.LoadNewScene("PlanetScene");
     }
 
     private void SpawnGrabbableCube()
