@@ -12,7 +12,7 @@ public class CheckPath : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Marker" && drawingParent.checkpoints.IndexOf(id) == -1)
+        if (other.CompareTag("Marker") && drawingParent.checkpoints.IndexOf(id) == -1)
         {
             drawingParent.checkpoints.Add(id);
 

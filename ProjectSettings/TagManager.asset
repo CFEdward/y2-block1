@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sample
+  - Anchor
+  - Marker
   layers:
   - Default
   - TransparentFX

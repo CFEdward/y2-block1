@@ -6,6 +6,7 @@ using UnityEngine;
 public class Drawing : MonoBehaviour
 {
     [SerializeField] private List<Collider> pathColliders = new();
+    [SerializeField] private Camera drawCamera;
 
     public List<int> checkpoints = new();
     public bool shouldReset = false;
@@ -28,6 +29,7 @@ public class Drawing : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        drawCamera.clearFlags = CameraClearFlags.Nothing;
         if (shouldReset) ResetDrawing();
 
         if (checkpoints.Count == pathColliders.Count && CheckContinuity())
@@ -52,6 +54,8 @@ public class Drawing : MonoBehaviour
     private void ResetDrawing()
     {
         Debug.Log("-> TODO: Reset Drawing");
+        drawCamera.clearFlags = CameraClearFlags.SolidColor;
+        
         checkpoints.Clear();
         shouldReset = false;
     }
