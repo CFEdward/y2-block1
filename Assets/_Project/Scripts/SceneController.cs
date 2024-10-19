@@ -75,6 +75,9 @@ public class SceneController : MonoBehaviour
         anchorManager.anchorsChanged += OnAnchorsChanged;
         leftActivateAction.action.performed += OnLeftActivateAction;
         rightActivateAction.action.performed += OnRightActivateAction;
+
+        SceneLoader.Instance.OnLoadBegin.AddListener(SaveLocation);
+        SceneLoader.Instance.OnLoadEnd.AddListener(LoadLocation);
     }
 
     private void OnAnchorsChanged(ARAnchorsChangedEventArgs obj)
@@ -174,6 +177,43 @@ public class SceneController : MonoBehaviour
         }
     }
 
+    public void SaveLocation()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            GameData.playerShipPosition = this.transform.position;
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            GameData.playerPlanetPosition = this.transform.position;
+        }
+    }
+
+    public void LoadLocation()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            this.transform.position = GameData.playerShipPosition;
+            Physics.SyncTransforms();
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            this.transform.position = GameData.playerPlanetPosition;
+            Physics.SyncTransforms();
+        }
+    }
+
+    protected void OnDestroy()
+    {
+        Debug.Log("-> SceneController::OnDestroy()");
+        switchSceneAction.action.performed -= OnSwitchSceneAction;
+        //togglePlanesAction.action.performed -= OnTogglePlanesAction;
+        //planeManager.planesChanged -= OnPlanesChanged;
+        anchorManager.anchorsChanged -= OnAnchorsChanged;
+        leftActivateAction.action.performed -= OnLeftActivateAction;
+        rightActivateAction.action.performed -= OnRightActivateAction;
+    }
+
     /*
     private void OnTogglePlanesAction(InputAction.CallbackContext obj)
     {
@@ -247,14 +287,4 @@ public class SceneController : MonoBehaviour
     }
     */
 
-    protected void OnDestroy()
-    {
-        Debug.Log("-> SceneController::OnDestroy()");
-        switchSceneAction.action.performed -= OnSwitchSceneAction;
-        //togglePlanesAction.action.performed -= OnTogglePlanesAction;
-        //planeManager.planesChanged -= OnPlanesChanged;
-        anchorManager.anchorsChanged -= OnAnchorsChanged;
-        leftActivateAction.action.performed -= OnLeftActivateAction;
-        rightActivateAction.action.performed -= OnRightActivateAction;
-    }
 }

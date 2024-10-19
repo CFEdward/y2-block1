@@ -58,8 +58,8 @@ public class SceneLoader : Singleton<SceneLoader>
 
         yield return StartCoroutine(LoadNew(sceneName));
         ChangeCameraBackground();
-        yield return screenFader.FadeIn();
         OnLoadEnd?.Invoke();
+        yield return screenFader.FadeIn();
 
         isLoading = false;
     }
@@ -81,14 +81,5 @@ public class SceneLoader : Singleton<SceneLoader>
     private void SetActiveScene(Scene scene, LoadSceneMode mode)
     {
         SceneManager.SetActiveScene(scene);
-
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            playerTransform.position = SceneController.playerShipPosition;
-        }
-        else if (!SceneController.firstVisit)
-        {
-            playerTransform.position = SceneController.playerPlanetPosition;
-        }
     }
 }
