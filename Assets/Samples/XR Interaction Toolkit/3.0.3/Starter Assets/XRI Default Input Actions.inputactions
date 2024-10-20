@@ -1657,7 +1657,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "middle test",
+                    "name": "Rotate Object",
                     "type": "Button",
                     "id": "0a88d9e5-7c8a-4cca-ac17-2faba764d7ba",
                     "expectedControlType": "",
@@ -1857,7 +1857,7 @@
                 {
                     "name": "",
                     "id": "ef7c937a-0b61-4f08-a9d5-5ec348ce15e8",
-                    "path": "<MetaAimHand>/middlePressed",
+                    "path": "<MetaAimHand>/ringPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1872,7 +1872,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "middle test",
+                    "action": "Rotate Object",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

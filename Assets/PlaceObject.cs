@@ -6,15 +6,22 @@ using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors.Casters;
 
+public enum ObjectToSpawn
+{
+    Analyzer,
+    Console
+}
+
 public class PlaceObject : MonoBehaviour
 {
     private XRInteractionManager interactionManager;
 
+    [SerializeField] private InputActionReference rotateAction;
+    private bool rotateActionInput;
     [SerializeField] private InputActionReference placeAction;
     private bool placeActionInput;
 
-    private GameObject objectToSpawn;
-    private bool alreadySpawned = false;
+    //private bool alreadySpawned = false;
 
     private ARAnchorManager anchorManager;
     private List<ARAnchor> anchors = new();
@@ -26,6 +33,9 @@ public class PlaceObject : MonoBehaviour
     private Vector3 positionHit;
     private bool shouldCast = true;
 
+    private GameObject objectToSpawn;
+    private GameObject analyzerPrefab;
+    private GameObject consolePrefab;
     private MeshRenderer objectToSpawnRenderer;
     private Material originalMaterial;
     [SerializeField] private Material placingMaterial;
@@ -50,16 +60,45 @@ public class PlaceObject : MonoBehaviour
         }
 
         placeAction.action.performed += i => placeActionInput = true;
+        rotateAction.action.started += i => rotateActionInput = true;
+        rotateAction.action.canceled += i => rotateActionInput = false;
     }
 
-    public void OnButtonPressed(GameObject objectSelected)
+    protected void Start()
+    {
+        analyzerPrefab = Resources.Load("Analyzer") as GameObject;
+        consolePrefab = Resources.Load("Console") as GameObject;
+    }
+
+    public void OnButtonPressed(int objectSelected)
     {
         //objectToSpawnRenderer = objectToSpawn.GetComponent<MeshRenderer>();
-        Quaternion rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
-        objectToSpawn = Instantiate(objectSelected, SimpleRay.hit.transform);
-        Debug.Log("spawn analyzer");
-        //objectToSpawn.transform.localScale = Vector3.one;
-        successfullySpawned = true;
+
+        GameObject obj;
+        switch ((ObjectToSpawn)objectSelected)
+        {
+            case ObjectToSpawn.Analyzer:
+                if ((obj = GameObject.FindWithTag("Analyzer")) != null)
+                {
+                    Destroy(obj);
+                }
+                objectToSpawn = Instantiate(analyzerPrefab, SimpleRay.hit.transform);
+                successfullySpawned = true;
+                break;
+            case ObjectToSpawn.Console:
+                if ((obj = GameObject.FindWithTag("Console")) != null)
+                {
+                    Destroy(obj);
+                }
+                objectToSpawn = Instantiate(consolePrefab, SimpleRay.hit.transform);
+                successfullySpawned = true;
+                break;
+            default:
+                successfullySpawned = false;
+                break;
+        }
+
+        //Quaternion rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
     }
 
     // Update is called once per frame
@@ -71,28 +110,39 @@ public class PlaceObject : MonoBehaviour
             Debug.Log(SimpleRay.hit.point);
             Physics.SyncTransforms();
 
-            if (placeActionInput)
+            if (rotateActionInput)
             {
-                placeActionInput = false;
-
-                if (objectToSpawn.GetComponent<ARAnchor>() == null)
-                {
-                    ARAnchor anchor = objectToSpawn.AddComponent<ARAnchor>();
-
-                    if (anchor != null)
-                    {
-                        Debug.Log("-> CreateAnchoredObject() - anchor added!");
-                        anchors.Add(anchor);
-                    }
-                    else
-                    {
-                        Debug.LogError("-> CreateAnchoredObject() - anchor is null!");
-                    }
-                }
-
-                //objectToSpawnRenderer.material = originalMaterial;
-                objectToSpawn = null;
+                objectToSpawn.transform.Rotate(Vector3.forward, 50f * Time.deltaTime);
             }
+
+            Place();
+        }
+    }
+
+    private void Place()
+    {
+        if (placeActionInput)
+        {
+            placeActionInput = false;
+
+            if (objectToSpawn.GetComponent<ARAnchor>() == null)
+            {
+                ARAnchor anchor = objectToSpawn.AddComponent<ARAnchor>();
+
+                if (anchor != null)
+                {
+                    Debug.Log("-> CreateAnchoredObject() - anchor added!");
+                    anchors.Add(anchor);
+                }
+                else
+                {
+                    Debug.LogError("-> CreateAnchoredObject() - anchor is null!");
+                }
+            }
+
+            //objectToSpawnRenderer.material = originalMaterial;
+            successfullySpawned = false;
+            objectToSpawn = null;
         }
     }
 
