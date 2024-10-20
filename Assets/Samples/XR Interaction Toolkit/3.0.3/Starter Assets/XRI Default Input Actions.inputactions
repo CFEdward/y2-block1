@@ -1646,13 +1646,31 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Place Object",
+                    "type": "Button",
+                    "id": "a1f2afbc-6d88-42c6-ba0e-4d484d1e8d87",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "middle test",
+                    "type": "Button",
+                    "id": "0a88d9e5-7c8a-4cca-ac17-2faba764d7ba",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "1ce80054-410d-4112-a332-50faa7fb4f23",
-                    "path": "<XRController>{RightHand}/{GripButton}",
+                    "id": "1d5b47ea-64e3-4b99-b620-de6c360908be",
+                    "path": "<MetaAimHand>{RightHand}/indexPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1662,8 +1680,8 @@
                 },
                 {
                     "name": "",
-                    "id": "1d5b47ea-64e3-4b99-b620-de6c360908be",
-                    "path": "<MetaAimHand>{RightHand}/indexPressed",
+                    "id": "70370f4b-d597-4842-b21b-5ed54f7e7f8d",
+                    "path": "<XRController>{RightHand}/{GripButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1833,6 +1851,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "TogglePlanes",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef7c937a-0b61-4f08-a9d5-5ec348ce15e8",
+                    "path": "<MetaAimHand>/middlePressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Place Object",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e789986f-ccde-40dd-8319-cb059d950f7f",
+                    "path": "<MetaAimHand>/middlePressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "middle test",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

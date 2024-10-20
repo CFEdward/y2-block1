@@ -13,7 +13,7 @@ public class PlaceObject : MonoBehaviour
     [SerializeField] private InputActionReference placeAction;
     private bool placeActionInput;
 
-    [SerializeField] private GameObject objectToSpawn;
+    private GameObject objectToSpawn;
     private bool alreadySpawned = false;
 
     private ARAnchorManager anchorManager;
@@ -29,6 +29,8 @@ public class PlaceObject : MonoBehaviour
     private MeshRenderer objectToSpawnRenderer;
     private Material originalMaterial;
     [SerializeField] private Material placingMaterial;
+
+    private bool successfullySpawned = false;
 
     protected void Awake()
     {
@@ -47,23 +49,54 @@ public class PlaceObject : MonoBehaviour
             Debug.LogError("-> Can't find 'CurveInteractionCaster'");
         }
 
-        objectToSpawnRenderer = objectToSpawn.GetComponent<MeshRenderer>();
-
-        //anchorManager.anchorsChanged += OnAnchorsChanged;
         placeAction.action.performed += i => placeActionInput = true;
     }
 
-    /*
-    private void OnAnchorsChanged(ARAnchorsChangedEventArgs obj)
+    public void OnButtonPressed(GameObject objectSelected)
     {
-        // remove any anchors that have been removed outside our control, such as during a session reset
-        foreach (var removedAnchor in obj.removed)
-        {
-            anchors.Remove(removedAnchor);
-            Destroy(removedAnchor.gameObject);
-        }
-    }*/
+        //objectToSpawnRenderer = objectToSpawn.GetComponent<MeshRenderer>();
+        Quaternion rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+        objectToSpawn = Instantiate(objectSelected, SimpleRay.hit.transform);
+        Debug.Log("spawn analyzer");
+        //objectToSpawn.transform.localScale = Vector3.one;
+        successfullySpawned = true;
+    }
 
+    // Update is called once per frame
+    protected void FixedUpdate()
+    {
+        if (objectToSpawn && successfullySpawned)
+        {
+            objectToSpawn.transform.position = SimpleRay.hit.point;
+            Debug.Log(SimpleRay.hit.point);
+            Physics.SyncTransforms();
+
+            if (placeActionInput)
+            {
+                placeActionInput = false;
+
+                if (objectToSpawn.GetComponent<ARAnchor>() == null)
+                {
+                    ARAnchor anchor = objectToSpawn.AddComponent<ARAnchor>();
+
+                    if (anchor != null)
+                    {
+                        Debug.Log("-> CreateAnchoredObject() - anchor added!");
+                        anchors.Add(anchor);
+                    }
+                    else
+                    {
+                        Debug.LogError("-> CreateAnchoredObject() - anchor is null!");
+                    }
+                }
+
+                //objectToSpawnRenderer.material = originalMaterial;
+                objectToSpawn = null;
+            }
+        }
+    }
+
+    /*
     protected void Update()
     {
         if (placeActionInput && objectToSpawn)
@@ -111,7 +144,7 @@ public class PlaceObject : MonoBehaviour
 
             if (!alreadySpawned)
             {
-                objectToSpawn = Instantiate(objectToSpawn, raycastHits[0].point, rotation);
+                objectToSpawn = Instantiate(objectToSpawn, positionHit, rotation);
                 originalMaterial = objectToSpawnRenderer.material;
                 objectToSpawnRenderer.material = placingMaterial;
 
@@ -131,9 +164,5 @@ public class PlaceObject : MonoBehaviour
             //position = Vector3.zero;
         }
     }
-
-    protected void OnDestroy()
-    {
-        //anchorManager.anchorsChanged -= OnAnchorsChanged;
-    }
+    */
 }

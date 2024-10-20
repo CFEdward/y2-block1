@@ -41,7 +41,6 @@ public class SceneController : MonoBehaviour
 
     public static Vector3 playerShipPosition;
     public static Vector3 playerPlanetPosition;
-    public static bool firstVisit = true;
 
     protected void OnEnable()
     {
