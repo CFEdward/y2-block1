@@ -1648,15 +1648,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Place Object",
-                    "type": "Button",
-                    "id": "a1f2afbc-6d88-42c6-ba0e-4d484d1e8d87",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Rotate Object",
                     "type": "Button",
                     "id": "0a88d9e5-7c8a-4cca-ac17-2faba764d7ba",
@@ -1851,17 +1842,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "TogglePlanes",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ef7c937a-0b61-4f08-a9d5-5ec348ce15e8",
-                    "path": "<MetaAimHand>/ringPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Place Object",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

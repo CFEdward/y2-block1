@@ -1,10 +1,14 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors.Casters;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public enum ObjectToSpawn
 {
@@ -41,6 +45,7 @@ public class PlaceObject : MonoBehaviour
     [SerializeField] private Material placingMaterial;
 
     private bool successfullySpawned = false;
+    private bool canPlace = false;
 
     protected void Awake()
     {
@@ -74,6 +79,7 @@ public class PlaceObject : MonoBehaviour
     {
         //objectToSpawnRenderer = objectToSpawn.GetComponent<MeshRenderer>();
 
+        Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
         GameObject obj;
         switch ((ObjectToSpawn)objectSelected)
         {
@@ -98,7 +104,8 @@ public class PlaceObject : MonoBehaviour
                 break;
         }
 
-        //Quaternion rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+        objectToSpawn.transform.rotation = spawnRotation;
+        StartCoroutine(WaitBeforePlacing());
     }
 
     // Update is called once per frame
@@ -106,23 +113,31 @@ public class PlaceObject : MonoBehaviour
     {
         if (objectToSpawn && successfullySpawned)
         {
-            objectToSpawn.transform.position = SimpleRay.hit.point;
+            objectToSpawn.transform.position = SimpleRay.hit.point + new Vector3(0f, objectToSpawn.GetComponent<DetectSurface>().adjustedPos, 0f);
             Debug.Log(SimpleRay.hit.point);
             Physics.SyncTransforms();
 
             if (rotateActionInput)
             {
-                objectToSpawn.transform.Rotate(Vector3.forward, 50f * Time.deltaTime);
+                objectToSpawn.transform.Rotate(Vector3.up, 50f * Time.deltaTime);
             }
 
             Place();
         }
     }
 
+    private IEnumerator WaitBeforePlacing()
+    {
+        yield return new WaitForSeconds(2f);
+
+        canPlace = true;
+    }
+
     private void Place()
     {
-        if (placeActionInput)
+        if (canPlace && placeActionInput)
         {
+            canPlace = false;
             placeActionInput = false;
 
             if (objectToSpawn.GetComponent<ARAnchor>() == null)
@@ -141,8 +156,13 @@ public class PlaceObject : MonoBehaviour
             }
 
             //objectToSpawnRenderer.material = originalMaterial;
+            objectToSpawn.GetComponent<DetectSurface>().enabled = false;
             successfullySpawned = false;
             objectToSpawn = null;
+        }
+        else if (!canPlace && placeActionInput)
+        {
+            placeActionInput = false;
         }
     }
 

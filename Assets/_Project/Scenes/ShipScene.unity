@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &165524057
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ Transform:
   m_GameObject: {fileID: 165524056}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.6910121, z: -0, w: 0.7228433}
-  m_LocalPosition: {x: -31.785288, y: 0.49999997, z: 4.681371}
+  m_LocalPosition: {x: -31.785288, y: 0.122, z: 4.681371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -283,6 +283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pen
       objectReference: {fileID: 0}
+    - target: {fileID: 7341851995651526416, guid: 8262743413739c94c8b8280e99c02e79, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -335,72 +339,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &1127081037 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 4147882298469195934, guid: a8a9763e394bb8e46878fafbcf3f109b, type: 3}
-  m_PrefabInstance: {fileID: 3775750234189209604}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1980461880398362551
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 132233807757510564, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: drawCamera
-      value: 
-      objectReference: {fileID: 1127081037}
-    - target: {fileID: 3850441130031673307, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -30.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3850441130031673307, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.151
-      objectReference: {fileID: 0}
-    - target: {fileID: 3850441130031673307, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.493
-      objectReference: {fileID: 0}
-    - target: {fileID: 3850441130031673307, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3850441130031673307, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3850441130031673307, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3850441130031673307, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3850441130031673307, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3850441130031673307, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3850441130031673307, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8205487189429340469, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
-      propertyPath: m_Name
-      value: Rune
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 38e9230a606f8e941aa8f3145ce4401a, type: 3}
 --- !u!1001 &2259623802299895072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -452,6 +390,10 @@ PrefabInstance:
     - target: {fileID: 7341851995651526416, guid: 8262743413739c94c8b8280e99c02e79, type: 3}
       propertyPath: m_Name
       value: Pen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341851995651526416, guid: 8262743413739c94c8b8280e99c02e79, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -510,6 +452,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drawing Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6227302432684558706, guid: a8a9763e394bb8e46878fafbcf3f109b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -524,4 +470,3 @@ SceneRoots:
   - {fileID: 3775750234189209604}
   - {fileID: 2259623802299895072}
   - {fileID: 483470653}
-  - {fileID: 1980461880398362551}

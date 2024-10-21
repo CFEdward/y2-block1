@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
-using UnityEngine.XR.Interaction.Toolkit.Interactors.Casters;
 
 [RequireComponent(typeof(ARPlaneManager))]
 
@@ -15,22 +13,15 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField] private bool debugMode = true;
 
-    private XRInteractionManager interactionManager;
     private List<Collider> colliders = new();
     private List<RaycastHit> raycastHits = new();
 
     //[SerializeField] private InputActionReference togglePlanesAction;
     [SerializeField] private InputActionReference rightActivateAction;
-    [SerializeField] private InputActionReference leftActivateAction;
 
     [SerializeField] private InputActionReference switchSceneAction;
 
-    [SerializeField] private GameObject objectToSpawn;
-
     [SerializeField] private GameObject grabbableCube;
-
-    [SerializeField] private NearFarInteractor leftNearFarInteractor;   // temporary
-    private CurveInteractionCaster leftCurveInteractionCaster;          //
 
     private ARAnchorManager anchorManager;
     private List<ARAnchor> anchors = new();
@@ -51,8 +42,6 @@ public class SceneController : MonoBehaviour
     protected void Start()
     {
         Debug.Log("-> SceneController::Start()");
-        interactionManager = FindFirstObjectByType<XRInteractionManager>();
-        leftCurveInteractionCaster = leftNearFarInteractor.GetComponent<CurveInteractionCaster>();
 
         planeManager = GetComponent<ARPlaneManager>();
 
@@ -72,7 +61,6 @@ public class SceneController : MonoBehaviour
         //togglePlanesAction.action.performed += OnTogglePlanesAction;
         //planeManager.planesChanged += OnPlanesChanged;
         anchorManager.anchorsChanged += OnAnchorsChanged;
-        leftActivateAction.action.performed += OnLeftActivateAction;
         rightActivateAction.action.performed += OnRightActivateAction;
 
         SceneLoader.Instance.OnLoadBegin.AddListener(SaveLocation);
@@ -86,44 +74,6 @@ public class SceneController : MonoBehaviour
         {
             anchors.Remove(removedAnchor);
             Destroy(removedAnchor.gameObject);
-        }
-    }
-
-    private void OnLeftActivateAction(InputAction.CallbackContext obj)
-    {
-        CheckIfRayHitsCollider();
-    }
-
-    private void CheckIfRayHitsCollider()
-    {
-        if (leftCurveInteractionCaster.TryGetColliderTargets(interactionManager, colliders, raycastHits))
-        {
-            Debug.Log("-> Hit detected! - name: " + raycastHits[0].transform.name);
-
-            Quaternion rotation = Quaternion.LookRotation(raycastHits[0].normal, Vector3.up);
-            GameObject instance = Instantiate(objectToSpawn, raycastHits[0].point, rotation);
-
-            if (instance.GetComponent<ARAnchor>() == null)
-            {
-                ARAnchor anchor = instance.AddComponent<ARAnchor>();
-
-                if (anchor != null)
-                {
-                    Debug.Log("-> CreateAnchoredObject() - anchor added!");
-                    anchors.Add(anchor);
-                }
-                else
-                {
-                    Debug.LogError("-> CreateAnchoredObject() - anchor is null!");
-                }
-            }
-
-            colliders.Clear();
-            raycastHits.Clear();
-        }
-        else
-        {
-            Debug.LogFormat("-> No hit detected!");
         }
     }
 
@@ -209,7 +159,6 @@ public class SceneController : MonoBehaviour
         //togglePlanesAction.action.performed -= OnTogglePlanesAction;
         //planeManager.planesChanged -= OnPlanesChanged;
         anchorManager.anchorsChanged -= OnAnchorsChanged;
-        leftActivateAction.action.performed -= OnLeftActivateAction;
         rightActivateAction.action.performed -= OnRightActivateAction;
     }
 
