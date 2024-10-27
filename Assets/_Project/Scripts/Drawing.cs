@@ -7,6 +7,7 @@ public class Drawing : MonoBehaviour
 {
     [SerializeField] private List<Collider> pathColliders = new();
     [SerializeField] private Camera drawCamera;
+    public GameObject markerUsed = null;
 
     public List<int> checkpoints = new();
     public bool shouldReset = false;
@@ -54,9 +55,17 @@ public class Drawing : MonoBehaviour
     private void ResetDrawing()
     {
         Debug.Log("-> TODO: Reset Drawing");
+        StartCoroutine(ResetMarker());
         drawCamera.clearFlags = CameraClearFlags.SolidColor;
         
         checkpoints.Clear();
         shouldReset = false;
+    }
+
+    private IEnumerator ResetMarker()
+    {
+        markerUsed.layer = 0;
+        yield return new WaitForSeconds(2f);
+        markerUsed.layer = 8;
     }
 }
