@@ -835,6 +835,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectedSamples: []
   currentSample: 0
+  updateObjects:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &535842388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1364,6 +1367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6babadd975a786b4695a31e5cb7073fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectedSampleNames: []
+  dropdown: {fileID: 0}
 --- !u!1 &975987556 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1042189025494976315, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -2415,6 +2420,18 @@ MonoBehaviour:
   rotateAction: {fileID: 9187360143706720661, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   placeAction: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   placingMaterial: {fileID: 2100000, guid: 2bbc58d1eb126eb4fafa9d3447654adb, type: 2}
+--- !u!114 &1791984486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302813913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2212bde3d801b7749b48249b8b1faccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1816513264
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,6 +3088,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1791984477}
+    - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1791984486}
     - targetCorrespondingSourceObject: {fileID: 1042189025494976315, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 975987562}

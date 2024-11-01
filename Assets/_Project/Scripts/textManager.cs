@@ -39,6 +39,7 @@ public class textManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        nextLineAction.action.performed += i => nextLineActionPressed = true;
         //optional: persist this instance between scenes
         //DontDestroyOnLoad(gameObject);
     }
@@ -58,7 +59,6 @@ public class textManager : MonoBehaviour
         dialogueBox = textBox.gameObject;
 
 
-        nextLineAction.action.performed += i => nextLineActionPressed = true;
 
         //debug stuff:
         //startDialogue(lines);
@@ -130,7 +130,7 @@ public class textManager : MonoBehaviour
         }
 
         //debug:
-        onNextLineInput();
+        //onNextLineInput();
     }
 
 

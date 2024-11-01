@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 
 public class interactor : MonoBehaviour
 {
-    private Transform player;
+    [SerializeField] private Transform player;
     [SerializeField] private bool oneTimeInteraction;
     private bool hasInteracted;
     private float distance;
     [SerializeField] float distanceThreshold = 10f;
-    [SerializeField] private bool inDistance;
+    [SerializeField] private bool inDistance = false;
 
     [SerializeField] private List<string> lines;
 
@@ -59,14 +59,17 @@ public class interactor : MonoBehaviour
         if (interactActionPressed)
         {
             onInteractInput();
+            
         }
     }
 
     public void onInteractInput()
     {
+
         interactActionPressed = false;
         if (inDistance && !hasInteracted)
         {
+            Debug.Log(" jeeeeej");
             if (oneTimeInteraction)
             {
                 hasInteracted = true;
