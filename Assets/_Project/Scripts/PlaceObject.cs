@@ -1,20 +1,31 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors.Casters;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
+
+public enum ObjectToSpawn
+{
+    Analyzer,
+    Console
+}
 
 public class PlaceObject : MonoBehaviour
 {
     private XRInteractionManager interactionManager;
 
+    [SerializeField] private InputActionReference rotateAction;
+    private bool rotateActionInput;
     [SerializeField] private InputActionReference placeAction;
     private bool placeActionInput;
 
-    [SerializeField] private GameObject objectToSpawn;
-    private bool alreadySpawned = false;
+    //private bool alreadySpawned = false;
 
     private ARAnchorManager anchorManager;
     private List<ARAnchor> anchors = new();
@@ -26,9 +37,15 @@ public class PlaceObject : MonoBehaviour
     private Vector3 positionHit;
     private bool shouldCast = true;
 
+    private GameObject objectToSpawn;
+    private GameObject analyzerPrefab;
+    private GameObject consolePrefab;
     private MeshRenderer objectToSpawnRenderer;
     private Material originalMaterial;
     [SerializeField] private Material placingMaterial;
+
+    private bool successfullySpawned = false;
+    private bool canPlace = false;
 
     protected void Awake()
     {
@@ -47,23 +64,109 @@ public class PlaceObject : MonoBehaviour
             Debug.LogError("-> Can't find 'CurveInteractionCaster'");
         }
 
-        objectToSpawnRenderer = objectToSpawn.GetComponent<MeshRenderer>();
-
-        //anchorManager.anchorsChanged += OnAnchorsChanged;
         placeAction.action.performed += i => placeActionInput = true;
+        rotateAction.action.started += i => rotateActionInput = true;
+        rotateAction.action.canceled += i => rotateActionInput = false;
+    }
+
+    protected void Start()
+    {
+        analyzerPrefab = Resources.Load("Analyzer") as GameObject;
+        consolePrefab = Resources.Load("Console") as GameObject;
+    }
+
+    public void OnButtonPressed(int objectSelected)
+    {
+        //objectToSpawnRenderer = objectToSpawn.GetComponent<MeshRenderer>();
+
+        Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+        GameObject obj;
+        switch ((ObjectToSpawn)objectSelected)
+        {
+            case ObjectToSpawn.Analyzer:
+                if ((obj = GameObject.FindWithTag("Analyzer")) != null)
+                {
+                    Destroy(obj);
+                }
+                objectToSpawn = Instantiate(analyzerPrefab, SimpleRay.hit.transform);
+                successfullySpawned = true;
+                break;
+            case ObjectToSpawn.Console:
+                if ((obj = GameObject.FindWithTag("Console")) != null)
+                {
+                    Destroy(obj);
+                }
+                objectToSpawn = Instantiate(consolePrefab, SimpleRay.hit.transform);
+                successfullySpawned = true;
+                break;
+            default:
+                successfullySpawned = false;
+                break;
+        }
+
+        objectToSpawn.transform.rotation = spawnRotation;
+        StartCoroutine(WaitBeforePlacing());
+    }
+
+    // Update is called once per frame
+    protected void FixedUpdate()
+    {
+        if (objectToSpawn && successfullySpawned)
+        {
+            objectToSpawn.transform.position = SimpleRay.hit.point + new Vector3(0f, objectToSpawn.GetComponent<DetectSurface>().adjustedPos, 0f);
+            Debug.Log(SimpleRay.hit.point);
+            Physics.SyncTransforms();
+
+            if (rotateActionInput)
+            {
+                objectToSpawn.transform.Rotate(Vector3.up, 50f * Time.deltaTime);
+            }
+
+            Place();
+        }
+    }
+
+    private IEnumerator WaitBeforePlacing()
+    {
+        yield return new WaitForSeconds(2f);
+
+        canPlace = true;
+    }
+
+    private void Place()
+    {
+        if (canPlace && placeActionInput)
+        {
+            canPlace = false;
+            placeActionInput = false;
+
+            if (objectToSpawn.GetComponent<ARAnchor>() == null)
+            {
+                ARAnchor anchor = objectToSpawn.AddComponent<ARAnchor>();
+
+                if (anchor != null)
+                {
+                    Debug.Log("-> CreateAnchoredObject() - anchor added!");
+                    anchors.Add(anchor);
+                }
+                else
+                {
+                    Debug.LogError("-> CreateAnchoredObject() - anchor is null!");
+                }
+            }
+
+            //objectToSpawnRenderer.material = originalMaterial;
+            objectToSpawn.GetComponent<DetectSurface>().enabled = false;
+            successfullySpawned = false;
+            objectToSpawn = null;
+        }
+        else if (!canPlace && placeActionInput)
+        {
+            placeActionInput = false;
+        }
     }
 
     /*
-    private void OnAnchorsChanged(ARAnchorsChangedEventArgs obj)
-    {
-        // remove any anchors that have been removed outside our control, such as during a session reset
-        foreach (var removedAnchor in obj.removed)
-        {
-            anchors.Remove(removedAnchor);
-            Destroy(removedAnchor.gameObject);
-        }
-    }*/
-
     protected void Update()
     {
         if (placeActionInput && objectToSpawn)
@@ -111,7 +214,7 @@ public class PlaceObject : MonoBehaviour
 
             if (!alreadySpawned)
             {
-                objectToSpawn = Instantiate(objectToSpawn, raycastHits[0].point, rotation);
+                objectToSpawn = Instantiate(objectToSpawn, positionHit, rotation);
                 originalMaterial = objectToSpawnRenderer.material;
                 objectToSpawnRenderer.material = placingMaterial;
 
@@ -131,9 +234,5 @@ public class PlaceObject : MonoBehaviour
             //position = Vector3.zero;
         }
     }
-
-    protected void OnDestroy()
-    {
-        //anchorManager.anchorsChanged -= OnAnchorsChanged;
-    }
+    */
 }

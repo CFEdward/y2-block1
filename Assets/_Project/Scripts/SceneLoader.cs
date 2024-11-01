@@ -55,8 +55,8 @@ public class SceneLoader : Singleton<SceneLoader>
 
         yield return StartCoroutine(LoadNew(sceneName));
         ChangeCameraBackground();
-        yield return screenFader.FadeIn();
         OnLoadEnd?.Invoke();
+        yield return screenFader.FadeIn();
 
         isLoading = false;
     }
