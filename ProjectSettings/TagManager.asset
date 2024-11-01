@@ -9,6 +9,9 @@ TagManager:
   - Marker
   - Analyzer
   - Console
+  - dialogueBox
+  - inputIndicator
+  - Sign
   layers:
   - Default
   - TransparentFX

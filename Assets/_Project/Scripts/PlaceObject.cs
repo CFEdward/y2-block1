@@ -13,7 +13,8 @@ using Vector3 = UnityEngine.Vector3;
 public enum ObjectToSpawn
 {
     Analyzer,
-    Console
+    Console,
+    Sign
 }
 
 public class PlaceObject : MonoBehaviour
@@ -40,6 +41,7 @@ public class PlaceObject : MonoBehaviour
     private GameObject objectToSpawn;
     private GameObject analyzerPrefab;
     private GameObject consolePrefab;
+    private GameObject signPrefab;
     private MeshRenderer objectToSpawnRenderer;
     private Material originalMaterial;
     [SerializeField] private Material placingMaterial;
@@ -73,6 +75,7 @@ public class PlaceObject : MonoBehaviour
     {
         analyzerPrefab = Resources.Load("Analyzer") as GameObject;
         consolePrefab = Resources.Load("Console") as GameObject;
+        signPrefab = Resources.Load("Sign") as GameObject;
     }
 
     public void OnButtonPressed(int objectSelected)
@@ -97,6 +100,14 @@ public class PlaceObject : MonoBehaviour
                     Destroy(obj);
                 }
                 objectToSpawn = Instantiate(consolePrefab, SimpleRay.hit.transform);
+                successfullySpawned = true;
+                break;
+            case ObjectToSpawn.Sign:
+                if ((obj = GameObject.FindWithTag("Sign")) != null)
+                {
+                    Destroy(obj);
+                }
+                objectToSpawn = Instantiate(signPrefab, SimpleRay.hit.transform);
                 successfullySpawned = true;
                 break;
             default:
