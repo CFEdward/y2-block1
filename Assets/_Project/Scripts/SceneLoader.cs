@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -14,8 +13,6 @@ public class SceneLoader : Singleton<SceneLoader>
     private readonly Color passthroughColor = new Color(0f, 0f, 0f, 0f);
 
     private bool isLoading = false;
-
-    [SerializeField] private Transform playerTransform;
 
     private void Awake()
     {
@@ -81,14 +78,5 @@ public class SceneLoader : Singleton<SceneLoader>
     private void SetActiveScene(Scene scene, LoadSceneMode mode)
     {
         SceneManager.SetActiveScene(scene);
-
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            playerTransform.position = SceneController.playerShipPosition;
-        }
-        else if (!SceneController.firstVisit)
-        {
-            playerTransform.position = SceneController.playerPlanetPosition;
-        }
     }
 }
