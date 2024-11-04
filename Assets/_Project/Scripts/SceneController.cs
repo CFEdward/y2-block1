@@ -143,11 +143,13 @@ public class SceneController : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             this.transform.position = GameData.playerShipPosition;
+            this.transform.localScale = Vector3.one;
             Physics.SyncTransforms();
         }
         else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             this.transform.position = GameData.playerPlanetPosition;
+            this.transform.localScale = new Vector3(3.5f, 3.5f, 3.5f);
             Physics.SyncTransforms();
         }
     }
