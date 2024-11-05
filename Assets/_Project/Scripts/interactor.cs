@@ -1,41 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class interactor : MonoBehaviour
-{
-    [SerializeField] private Transform player;
-    [SerializeField] private bool oneTimeInteraction;
-    private bool hasInteracted;
+{ 
+    private Transform player;
+
     private float distance;
     [SerializeField] float distanceThreshold = 10f;
     [SerializeField] private bool inDistance = false;
+    private bool hasInteracted;
 
     [SerializeField] private List<string> lines;
 
 
-    [SerializeField] private InputActionReference interactAction;
-    private bool interactActionPressed;
-
-
-    public UnityEvent inRange;
-    public UnityEvent outRange;
-    public UnityEvent<List<string>> interact;
-
-
+    // Start is called before the first frame update
     void Start()
     {
-        player = playerManager.instance.transform;
-
-
-        interactAction.action.performed += i => interactActionPressed = true;
-        //debug:
-        onInteractInput();
+        //player = playerManager.instance.Transform;
     }
 
-
+    // Update is called once per frame
     void Update()
     {
         distance = Vector3.Distance(player.position, transform.position);
@@ -45,7 +30,7 @@ public class interactor : MonoBehaviour
             if (!inDistance)
             {
                 inDistance = true;
-                inRange.Invoke();
+                inRange();
             }
         }
         else
@@ -53,28 +38,20 @@ public class interactor : MonoBehaviour
             if (inDistance)
             {
                 inDistance = false;
-                outRange.Invoke();
+                outRange();
             }
-        }
-        if (interactActionPressed)
-        {
-            onInteractInput();
-            
         }
     }
 
-    public void onInteractInput()
+
+    void inRange()
     {
-
-        interactActionPressed = false;
-        if (inDistance && !hasInteracted)
-        {
-            Debug.Log(" jeeeeej");
-            if (oneTimeInteraction)
-            {
-                hasInteracted = true;
-            }
-            interact.Invoke(lines);
-        }
+        interactionManager.instance.gameObject.SetActive(true);
     }
+
+    void outRange()
+    {
+        interactionManager.instance.gameObject.SetActive(false);
+    }
+
 }

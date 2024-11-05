@@ -94,6 +94,5 @@ public class sampleSelector : MonoBehaviour
         {
             showSample(-1);
         }
-        
     }
 }

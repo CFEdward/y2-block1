@@ -5,13 +5,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 
 public class textManager : MonoBehaviour
 {
     private GameObject inputIndicator;
-    private GameObject dialogueBox;
+    [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private interactionManager interaction;
     private bool inDialogue;
     [SerializeField]private TextMeshProUGUI textBox;
     private Transform player;
@@ -19,46 +21,33 @@ public class textManager : MonoBehaviour
     public float textSpeed;
     [SerializeField] private List<string> lines;
     private int index;
+    public bool interactPossible = true;
+    private bool typing;
 
 
     [SerializeField] private InputActionReference nextLineAction;
     private bool nextLineActionPressed;
 
 
-    public static textManager instance { get; private set; }
 
-    //i'm using awake so any other script can already acces the textManager on start
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-
         nextLineAction.action.performed += i => nextLineActionPressed = true;
-        //optional: persist this instance between scenes
-        //DontDestroyOnLoad(gameObject);
     }
 
 
     void Start()
     {
+        dialogueBox.SetActive(false);
+
         player = playerManager.instance.transform;
         foreach (Transform child in transform)
         {
             if (child.CompareTag("inputIndicator"))
             {
-                Debug.Log("dit werkt");
                 inputIndicator = child.gameObject;
             }
         }
-        dialogueBox = textBox.gameObject;
-
-
 
         //debug stuff:
         //startDialogue(lines);
@@ -79,56 +68,88 @@ public class textManager : MonoBehaviour
         {
             onNextLineInput();
         }
+
+
     }
 
 
     private void onNextLineInput()
     {
+        StopAllCoroutines();
         nextLineActionPressed = false;
         if (inDialogue)
         {
-            if (index < lines.Count - 1)
+            if (index < lines.Count + 1)
             {
-                Debug.Log("test");
-                index++;
-                //StartCoroutine(typeOutLine());
-                StartCoroutine(typeOutLine(lines[index]));
+                if (!typing)
+                {
+                    {
+                        //StartCoroutine(typeOutLine());
+                        if (index < lines.Count)
+                        {
+                            StartCoroutine(typeOutLine(lines[index]));
+                        }
+                        else
+                        {
+                            stopDialogue();
+                            interaction.waitOneInteraction = true;
+                        }
+                        index++;
+                    }
+
+                }
+                else
+                {
+                    if (index < lines.Count)
+                    {
+                        textBox.text = lines[index];
+                        typing = false;
+                    }
+                    else
+                    {
+                        stopDialogue();
+                        interaction.waitOneInteraction = true;
+                    }
+                }
             }
+            else
+            {
+                stopDialogue();
+            }   
         }
     }
-
-    public void inRange()
-    {
-        if (!inDialogue)
-        {
-            inputIndicator.SetActive(true);
-        }
-    }
-    public void outRange()
-    {
-        inputIndicator.SetActive(false);
-    }
-
 
 
     public void startDialogue(List<string> dialogueLines)
     {
+        dialogueBox.SetActive(true);
+        StopAllCoroutines();
         lines = dialogueLines;
 
+        interactPossible = false;
         inDialogue = true;
         index = 0;
-        StartCoroutine(typeOutLine(lines[0]));
+        onNextLineInput();
+    }
+
+    void stopDialogue()
+    {
+        inDialogue = false;
+        dialogueBox.SetActive(false);
+        interactPossible = true;
+        
     }
 
     IEnumerator typeOutLine(string lineToType)
     {
+        typing = true;
         textBox.text = string.Empty;
         foreach (char character in lineToType.ToCharArray())
         {
             textBox.text += character;
             yield return new WaitForSeconds(textSpeed);
         }
-
+        typing = false;
         //debug:
         //onNextLineInput();
     }

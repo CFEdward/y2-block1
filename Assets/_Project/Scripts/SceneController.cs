@@ -16,12 +16,16 @@ public class SceneController : MonoBehaviour
     private List<Collider> colliders = new();
     private List<RaycastHit> raycastHits = new();
 
+    private bool alienAlreadySpawned = false;
+
     //[SerializeField] private InputActionReference togglePlanesAction;
     [SerializeField] private InputActionReference rightActivateAction;
 
     [SerializeField] private InputActionReference switchSceneAction;
 
-    [SerializeField] private GameObject grabbableCube;
+    [SerializeField] private GameObject sittingAlien;
+
+
 
     private ARAnchorManager anchorManager;
     private List<ARAnchor> anchors = new();
@@ -79,7 +83,7 @@ public class SceneController : MonoBehaviour
 
     private void OnRightActivateAction(InputAction.CallbackContext obj)
     {
-        SpawnGrabbableCube();
+        //SpawnsittingAlien();
     }
 
     public void OnSwitchSceneAction(InputAction.CallbackContext obj)
@@ -107,9 +111,9 @@ public class SceneController : MonoBehaviour
         SceneLoader.Instance.LoadNewScene("PlanetScene");
     }
 
-    private void SpawnGrabbableCube()
+    private void SpawnsittingAlien()
     {
-        Debug.Log("-> SceneController::SpawnGrabbableCube()");
+        Debug.Log("-> SceneController::SpawnsittingAlien()");
 
         Vector3 spawnPosition;
 
@@ -121,7 +125,7 @@ public class SceneController : MonoBehaviour
             {
                 spawnPosition = plane.transform.position;
                 spawnPosition.y += 0.3f;
-                Instantiate(grabbableCube, spawnPosition, Quaternion.identity);
+                Instantiate(sittingAlien, spawnPosition, Quaternion.identity);
             }
         }
     }
@@ -162,6 +166,16 @@ public class SceneController : MonoBehaviour
         //planeManager.planesChanged -= OnPlanesChanged;
         anchorManager.anchorsChanged -= OnAnchorsChanged;
         rightActivateAction.action.performed -= OnRightActivateAction;
+    }
+
+
+    void Update()
+    {
+        if (GameData.alienScanned && !alienAlreadySpawned && SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            alienAlreadySpawned = true;
+            SpawnsittingAlien();
+        }
     }
 
     /*
