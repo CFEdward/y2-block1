@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors.Casters;
@@ -10,9 +11,10 @@ using Vector3 = UnityEngine.Vector3;
 
 public enum ObjectToSpawn
 {
-    Analyzer,
     Console,
-    Sign
+    Sign,
+    MarkerB,
+    MarkerR
 }
 
 public class PlaceObject : MonoBehaviour
@@ -37,15 +39,20 @@ public class PlaceObject : MonoBehaviour
     private bool shouldCast = true;
 
     private GameObject objectToSpawn;
-    private GameObject analyzerPrefab;
+    //private GameObject analyzerPrefab;
     private GameObject consolePrefab;
     private GameObject signPrefab;
+    private GameObject markerBPrefab;
+    private GameObject markerRPrefab;
     private MeshRenderer objectToSpawnRenderer;
     private Material originalMaterial;
     [SerializeField] private Material placingMaterial;
 
     private bool successfullySpawned = false;
     private bool canPlace = false;
+
+    private Scene persistentScene;
+    private Scene shipScene;
 
     protected void Awake()
     {
@@ -71,9 +78,14 @@ public class PlaceObject : MonoBehaviour
 
     protected void Start()
     {
-        analyzerPrefab = Resources.Load("Analyzer") as GameObject;
+        persistentScene = SceneManager.GetSceneByBuildIndex(0);
+        shipScene = SceneManager.GetSceneByBuildIndex(1);
+
+        //analyzerPrefab = Resources.Load("Analyzer") as GameObject;
         consolePrefab = Resources.Load("Console") as GameObject;
         signPrefab = Resources.Load("Sign") as GameObject;
+        markerBPrefab = Resources.Load("MarkerB") as GameObject;
+        markerRPrefab = Resources.Load("MarkerR") as GameObject;
     }
 
     public void OnButtonPressed(int objectSelected)
@@ -82,16 +94,9 @@ public class PlaceObject : MonoBehaviour
 
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
         GameObject obj;
+        SceneManager.SetActiveScene(persistentScene);
         switch ((ObjectToSpawn)objectSelected)
         {
-            case ObjectToSpawn.Analyzer:
-                if ((obj = GameObject.FindWithTag("Analyzer")) != null)
-                {
-                    Destroy(obj);
-                }
-                objectToSpawn = Instantiate(analyzerPrefab, SimpleRay.hit.transform);
-                successfullySpawned = true;
-                break;
             case ObjectToSpawn.Console:
                 if ((obj = GameObject.FindWithTag("Console")) != null)
                 {
@@ -106,6 +111,24 @@ public class PlaceObject : MonoBehaviour
                     Destroy(obj);
                 }
                 objectToSpawn = Instantiate(signPrefab, SimpleRay.hit.transform);
+                objectToSpawn.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+                Physics.SyncTransforms();
+                successfullySpawned = true;
+                break;
+            case ObjectToSpawn.MarkerB:
+                if ((obj = GameObject.FindWithTag("Marker")) != null)
+                {
+                    Destroy(obj);
+                }
+                objectToSpawn = Instantiate(markerBPrefab, SimpleRay.hit.transform);
+                successfullySpawned = true;
+                break;
+            case ObjectToSpawn.MarkerR:
+                if ((obj = GameObject.FindWithTag("Marker")) != null)
+                {
+                    Destroy(obj);
+                }
+                objectToSpawn = Instantiate(markerRPrefab, SimpleRay.hit.transform);
                 successfullySpawned = true;
                 break;
             default:
@@ -113,6 +136,7 @@ public class PlaceObject : MonoBehaviour
                 break;
         }
 
+        SceneManager.SetActiveScene(shipScene);
         objectToSpawn.transform.rotation = spawnRotation;
         StartCoroutine(WaitBeforePlacing());
     }
@@ -122,6 +146,15 @@ public class PlaceObject : MonoBehaviour
     {
         if (objectToSpawn && successfullySpawned)
         {
+            if (objectToSpawn.CompareTag("Marker"))
+            {
+                objectToSpawn.transform.position = SimpleRay.hit.point;
+                Physics.SyncTransforms();
+                objectToSpawn.AddComponent<ToggleVisibility>();
+                successfullySpawned = false;
+                objectToSpawn = null;
+                return;
+            }
             objectToSpawn.transform.position = SimpleRay.hit.point + new Vector3(0f, objectToSpawn.GetComponent<DetectSurface>().adjustedPos, 0f);
             Debug.Log(SimpleRay.hit.point);
             Physics.SyncTransforms();
@@ -149,7 +182,7 @@ public class PlaceObject : MonoBehaviour
             canPlace = false;
             placeActionInput = false;
 
-            /*if (objectToSpawn.GetComponent<ARAnchor>() == null)
+            if (!objectToSpawn.CompareTag("Marker") && objectToSpawn.GetComponent<ARAnchor>() == null)
             {
                 ARAnchor anchor = objectToSpawn.AddComponent<ARAnchor>();
 
@@ -162,8 +195,9 @@ public class PlaceObject : MonoBehaviour
                 {
                     Debug.LogError("-> CreateAnchoredObject() - anchor is null!");
                 }
-            }*/
+            }
 
+            objectToSpawn.AddComponent<ToggleVisibility>();
             //objectToSpawnRenderer.material = originalMaterial;
             objectToSpawn.GetComponent<DetectSurface>().enabled = false;
             successfullySpawned = false;
