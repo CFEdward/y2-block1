@@ -1508,8 +1508,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2274219cab470d4a965fedd4de59044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   togglePlanesAction: {fileID: 1887914196011189739, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   activateAction: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+=======
+  debugMode: 1
+  rightActivateAction: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+>>>>>>> Stashed changes
   switchSceneAction: {fileID: -3747596861492837508, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   grabbableCube: {fileID: 3012843220432904080, guid: d172d01215adbc94698c230b76e1c9f2, type: 3}
 --- !u!1 &1787516059220952802

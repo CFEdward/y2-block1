@@ -12,14 +12,16 @@ public class textManager : MonoBehaviour
 {
     private GameObject inputIndicator;
     private GameObject dialogueBox;
-    private bool inDialogue;
-    [SerializeField]private TextMeshProUGUI textBox;
+    public bool inDialogue;
+    [SerializeField] private TextMeshProUGUI textBox;
     private Transform player;
     [SerializeField] float turnSmoothSpeed;
     public float textSpeed;
     [SerializeField] private List<string> lines;
     private int index;
-
+    [SerializeField] bool rambleMode = false;
+    [SerializeField] bool startTalking = false;
+    public bool interactPossible = true;
 
     [SerializeField] private InputActionReference nextLineAction;
     private bool nextLineActionPressed;
@@ -51,17 +53,18 @@ public class textManager : MonoBehaviour
         {
             if (child.CompareTag("inputIndicator"))
             {
-                Debug.Log("dit werkt");
                 inputIndicator = child.gameObject;
             }
         }
-        dialogueBox = textBox.gameObject;
+        dialogueBox = textBox.transform.parent.gameObject;
 
 
         nextLineAction.action.performed += i => nextLineActionPressed = true;
 
-        //debug stuff:
-        //startDialogue(lines);
+        if (startTalking)
+        {
+            startDialogue(lines, rambleMode);
+        }
     }
 
     // Update is called once per frame
@@ -79,27 +82,47 @@ public class textManager : MonoBehaviour
         {
             onNextLineInput();
         }
+        if (!inDialogue && rambleMode)
+        {
+            startDialogue(lines);
+        }
     }
 
 
     private void onNextLineInput()
     {
+        StopAllCoroutines();
         nextLineActionPressed = false;
         if (inDialogue)
         {
             if (index < lines.Count - 1)
             {
-                Debug.Log("test");
                 index++;
                 //StartCoroutine(typeOutLine());
                 StartCoroutine(typeOutLine(lines[index]));
             }
+            else
+            {
+                
+                if (rambleMode)
+                {
+                    index = 0;
+                    StartCoroutine(typeOutLine(lines[index]));
+                } else
+                {
+                    stopDialogue();
+                }
+            }
+        }
+        else
+        {
+            interactPossible = true;
         }
     }
 
     public void inRange()
     {
-        if (!inDialogue)
+        if (!interactPossible)
         {
             inputIndicator.SetActive(true);
         }
@@ -111,22 +134,50 @@ public class textManager : MonoBehaviour
 
 
 
-    public void startDialogue(List<string> dialogueLines)
+    public void startDialogue(List<string> dialogueLines, bool goIntoRambleMode = false)
     {
+        StopAllCoroutines();
+        rambleMode = goIntoRambleMode;
         lines = dialogueLines;
+        inputIndicator.SetActive(false);
+        dialogueBox.SetActive(true);
 
         inDialogue = true;
         index = 0;
         StartCoroutine(typeOutLine(lines[0]));
     }
 
+    public void stopDialogue()
+    {
+        //inputIndicator.SetActive(true);
+        dialogueBox.SetActive(false);
+        //interactPossible = true;
+        inDialogue = false;
+    }
+
     IEnumerator typeOutLine(string lineToType)
     {
+        if (!rambleMode)
+        {
+            interactPossible = false;
+        } else
+        {
+            interactPossible = true;
+            inputIndicator.SetActive(true);
+        }
+        
         textBox.text = string.Empty;
         foreach (char character in lineToType.ToCharArray())
         {
             textBox.text += character;
             yield return new WaitForSeconds(textSpeed);
+        }
+
+        if (rambleMode)
+        {
+            yield return new WaitForSeconds(textSpeed * 5);
+            onNextLineInput();
+            //textSpeed = 0;
         }
 
         //debug:
