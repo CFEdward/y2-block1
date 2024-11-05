@@ -62,6 +62,9 @@ public class textManager : MonoBehaviour
             direction.y = 0;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * turnSmoothSpeed);
+        } else
+        {
+            player = playerManager.instance.transform;
         }
 
         if (nextLineActionPressed)
