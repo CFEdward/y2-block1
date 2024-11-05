@@ -44,6 +44,7 @@ public class Drawing : MonoBehaviour
             //checkpoints.Clear();
             checkpoints = new();
             ResetDrawing(true);
+
         }
 
         if (timesCompleted >= 2)
@@ -90,6 +91,7 @@ public class Drawing : MonoBehaviour
                 if (timesCompleted >= 2)
                 {
                     Destroy(gameObject.transform.parent.gameObject);
+
                 }
                 else
                 {

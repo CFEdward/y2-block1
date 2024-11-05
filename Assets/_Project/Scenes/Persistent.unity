@@ -173,7 +173,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1552403245089541920, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.7883477
+      value: -6.922
       objectReference: {fileID: 0}
     - target: {fileID: 1552403245089541920, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: m_LocalPosition.y
@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1552403245089541920, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.6800985
+      value: 0.039
       objectReference: {fileID: 0}
     - target: {fileID: 1552403245089541920, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -215,10 +215,169 @@ PrefabInstance:
       propertyPath: m_Name
       value: sitting ship alien
       objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].linesName
+      value: (use the ships universl translator to descipher what the alien is saying)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].linesName
+      value: no problem!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[2].linesName
+      value: how could i learn the language?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[3].linesName
+      value: how does that teach me the rune?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].linesName
+      value: wow, so that means hello!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[5].linesName
+      value: so, could you learn me the other runes?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].linesName
+      value: okaaay, but what are kail, and where is this kailyard?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[7].linesName
+      value: okay, i'll go back to the planet and search for the kail
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].lines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[2].lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[3].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[5].lines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].lines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[7].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].lines.Array.data[0]
+      value: thank you for helping me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].lines.Array.data[1]
+      value: thank you for helping me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].lines.Array.data[0]
+      value: wait, i can understand you now?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].lines.Array.data[1]
+      value: 'thats great! but if you want to explore more of my world... '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].lines.Array.data[2]
+      value: you are going to have to learn our language!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[2].lines.Array.data[0]
+      value: that's simple! i'll teach you how to read our runes!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[2].lines.Array.data[1]
+      value: just use the pen i gave you to trace out the path that is highlighted,
+        and you'll learn the rune!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[2].lines.Array.data[2]
+      value: you are going to have to learn our language!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[3].lines.Array.data[0]
+      value: that is how our people convey information, try it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[3].lines.Array.data[1]
+      value: just use the pen i gave you to trace out the path that is highlighted,
+        and you'll learn the rune!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].lines.Array.data[0]
+      value: yep, pretty neat huh?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].lines.Array.data[1]
+      value: yep, neat huh?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[5].lines.Array.data[0]
+      value: i could...
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[5].lines.Array.data[1]
+      value: 'but i''m hungry! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[5].lines.Array.data[2]
+      value: get me some kail from the kailyard, and i'll teach you more.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].lines.Array.data[0]
+      value: they are the things i eat, and there should be a kailyard close to the
+        cage i was locked in.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].lines.Array.data[1]
+      value: there are two yards, one with kail that is for eating, and one that
+        is used to keep the others away.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].lines.Array.data[2]
+      value: here, i'll teach you the runes for edible and poisonous.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[7].lines.Array.data[0]
+      value: great! good luck!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[7].lines.Array.data[1]
+      value: here, i'll teach you the runes for edible and poisonous
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[7].lines.Array.data[2]
+      value: here, i'll teach you the runes for edible and poisonous
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2216032882316121498, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1308125132}
   m_SourcePrefab: {fileID: 100100000, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
 --- !u!1 &535842385
 GameObject:
@@ -976,6 +1135,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287234602}
   m_CullTransparentMesh: 1
+--- !u!1 &1308125127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2216032882316121498, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+  m_PrefabInstance: {fileID: 411862407}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1308125132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308125127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8021e6f27ca994c9181259b2d5c150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1331937574 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}

@@ -10,6 +10,7 @@ public class multipleLines
 {
     public string linesName;
     public List<string> lines;
+    public UnityEvent<int> endOfLines;
 }
 
 public class interactionManager: MonoBehaviour
@@ -115,6 +116,11 @@ public class interactionManager: MonoBehaviour
         }
     }
 
+    public void onLinesEnd()
+    {
+        allLines[linesIndex].endOfLines.Invoke(linesIndex);
+    }
+
     public void onInteractInput()
     {
         interactActionPressed = false;
@@ -133,7 +139,6 @@ public class interactionManager: MonoBehaviour
             {
                 if (linesIndex < allLines.Count)
                 {
-
                     inputIndicatorText.text = allLines[linesIndex].linesName;
                 } else
                 {

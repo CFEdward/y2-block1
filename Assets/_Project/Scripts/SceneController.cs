@@ -11,6 +11,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class SceneController : MonoBehaviour
 {
+    private Scene persistentScene;
+    private Scene shipScene;
+
     [SerializeField] private bool debugMode = true;
 
     private List<Collider> colliders = new();
@@ -69,6 +72,10 @@ public class SceneController : MonoBehaviour
 
         SceneLoader.Instance.OnLoadBegin.AddListener(SaveLocation);
         SceneLoader.Instance.OnLoadEnd.AddListener(LoadLocation);
+
+
+        persistentScene = SceneManager.GetSceneByBuildIndex(0);
+        shipScene = SceneManager.GetSceneByBuildIndex(1);
     }
 
     private void OnAnchorsChanged(ARAnchorsChangedEventArgs obj)
@@ -171,10 +178,13 @@ public class SceneController : MonoBehaviour
 
     void Update()
     {
-        if (GameData.alienScanned && !alienAlreadySpawned && SceneManager.GetActiveScene().buildIndex == 1)
+        if (GameData.alienScanned && !alienAlreadySpawned )
         {
+            SceneManager.SetActiveScene(persistentScene);
             alienAlreadySpawned = true;
             SpawnsittingAlien();
+            Physics.SyncTransforms();
+            SceneManager.SetActiveScene(shipScene);
         }
     }
 

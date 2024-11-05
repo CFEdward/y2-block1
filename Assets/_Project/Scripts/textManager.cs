@@ -93,6 +93,7 @@ public class textManager : MonoBehaviour
                         {
                             stopDialogue();
                             interaction.waitOneInteraction = true;
+                            interaction.onLinesEnd();
                         }
                         index++;
                     }
@@ -109,6 +110,7 @@ public class textManager : MonoBehaviour
                     {
                         stopDialogue();
                         interaction.waitOneInteraction = true;
+                        interaction.onLinesEnd();
                     }
                 }
             }
