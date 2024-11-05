@@ -149,7 +149,7 @@ public class PlaceObject : MonoBehaviour
             canPlace = false;
             placeActionInput = false;
 
-            if (objectToSpawn.GetComponent<ARAnchor>() == null)
+            /*if (objectToSpawn.GetComponent<ARAnchor>() == null)
             {
                 ARAnchor anchor = objectToSpawn.AddComponent<ARAnchor>();
 
@@ -162,7 +162,7 @@ public class PlaceObject : MonoBehaviour
                 {
                     Debug.LogError("-> CreateAnchoredObject() - anchor is null!");
                 }
-            }
+            }*/
 
             //objectToSpawnRenderer.material = originalMaterial;
             objectToSpawn.GetComponent<DetectSurface>().enabled = false;
