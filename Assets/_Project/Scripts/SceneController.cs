@@ -118,7 +118,7 @@ public class SceneController : MonoBehaviour
         SceneLoader.Instance.LoadNewScene("PlanetScene");
     }
 
-    private void SpawnsittingAlien()
+    private void SpawnSittingAlien()
     {
         Debug.Log("-> SceneController::SpawnsittingAlien()");
 
@@ -178,14 +178,20 @@ public class SceneController : MonoBehaviour
 
     void Update()
     {
-        if (GameData.alienScanned && !alienAlreadySpawned )
+        if (GameData.alienScanned && alienAlreadySpawned == false && SceneManager.GetActiveScene().buildIndex == 1)
         {
-            SceneManager.SetActiveScene(persistentScene);
             alienAlreadySpawned = true;
-            SpawnsittingAlien();
-            Physics.SyncTransforms();
-            SceneManager.SetActiveScene(shipScene);
+            StartCoroutine(SpawnAlienDelay());
         }
+    }
+
+    private IEnumerator SpawnAlienDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.SetActiveScene(persistentScene);
+        SpawnSittingAlien();
+        Physics.SyncTransforms();
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
     }
 
     /*

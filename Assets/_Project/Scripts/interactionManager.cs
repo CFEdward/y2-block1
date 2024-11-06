@@ -10,6 +10,7 @@ public class multipleLines
 {
     public string linesName;
     public List<string> lines;
+    public bool spawnThing = false;
     public UnityEvent<int> endOfLines;
     public bool pauzeAfterLine = false;
 }
@@ -32,6 +33,8 @@ public class interactionManager: MonoBehaviour
     private int linesIndex = 0;
 
     [SerializeField] private List<multipleLines> allLines;
+    [SerializeField] private List<multipleLines> allLinesTheSecond;
+    [SerializeField] private List<multipleLines> allLinesTheThird;
 
 
     [SerializeField] private InputActionReference interactAction;
@@ -80,6 +83,18 @@ public class interactionManager: MonoBehaviour
 
     void Update()
     {
+        if (GameData.fruitCollected && allLines != allLinesTheSecond)
+        {
+            allLines = allLinesTheSecond;
+            linesIndex = 0;
+            paused = false;
+        }
+        else if (GameData.wrongFruitCollected && allLines != allLinesTheThird)
+        {
+            allLines = allLinesTheThird;
+            linesIndex = 0;
+            paused = false;
+        }
         distance = Vector3.Distance(player.position, transform.position);
 
         if (distance <= distanceThreshold && !hasInteracted)
@@ -99,7 +114,7 @@ public class interactionManager: MonoBehaviour
             }
         }
 
-        if (textManager.interactPossible && inDistance && !hasInteracted && linesIndex < allLines.Count)
+        if (textManager.interactPossible && inDistance && !hasInteracted && linesIndex < allLines.Count && !paused)
         {
             inputIndicator.SetActive(true);
         } else
@@ -123,6 +138,10 @@ public class interactionManager: MonoBehaviour
 
     public void onLinesEnd()
     {
+        if (allLines[linesIndex - 1].spawnThing)
+        {
+
+        }
         allLines[linesIndex - 1].endOfLines.Invoke(linesIndex);
         if (allLines[linesIndex - 1].pauzeAfterLine)
         {
