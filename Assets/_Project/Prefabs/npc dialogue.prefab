@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2864068830385508769}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.835, y: 4.61, z: -313.471}
+  m_LocalPosition: {x: 0, y: 2.501, z: 0.097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -127,11 +127,84 @@ MonoBehaviour:
   oneTimeInteraction: 0
   distanceThreshold: 10
   inDistance: 0
+  paused: 0
   allLines:
-  - linesName: ask the alien what's wrong
+  - linesName: (use the ships universl translator to descipher what the alien is
+      saying)
     lines:
-    - 'AC! AC! '
-  interactAction: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - thank you for helping me!
+    spawnThing: 0
+    endOfLines:
+      m_PersistentCalls:
+        m_Calls: []
+    pauzeAfterLine: 0
+  - linesName: no problem!
+    lines:
+    - wait, i can understand you now?
+    - 'thats great! but if you want to explore more of my world... '
+    - you are going to have to learn our language!
+    spawnThing: 0
+    endOfLines:
+      m_PersistentCalls:
+        m_Calls: []
+    pauzeAfterLine: 0
+  - linesName: but how do i do that?
+    lines:
+    - that's simple! i can teach you how to read our runes!
+    spawnThing: 0
+    endOfLines:
+      m_PersistentCalls:
+        m_Calls: []
+    pauzeAfterLine: 0
+  - linesName: you can?
+    lines:
+    - i could teach you...
+    - 'but i''m hungry! '
+    - get me some kail from the kailyard, and i'll teach you!
+    spawnThing: 0
+    endOfLines:
+      m_PersistentCalls:
+        m_Calls: []
+    pauzeAfterLine: 0
+  - linesName: okaaay, but what are kail, and where is this kailyard?
+    lines:
+    - 'they are the things i eat, and there should be a kailyard close to the cage
+      i was locked in. '
+    - 'there are two yards, one with kail that is for eating, '
+    - and one that is used to keep my less likable neighbours away!
+    - here, i'll teach you the runes for edible and poisonous, T and U!
+    spawnThing: 1
+    endOfLines:
+      m_PersistentCalls:
+        m_Calls: []
+    pauzeAfterLine: 0
+  - linesName: how does this teach me the rune?
+    lines:
+    - that is how our people convey information, try it!
+    - trace in the outline of the rune.
+    spawnThing: 0
+    endOfLines:
+      m_PersistentCalls:
+        m_Calls: []
+    pauzeAfterLine: 1
+  - linesName: wow, so that means edible!
+    lines:
+    - yep, pretty neat huh?
+    - now do poisonous as well!
+    spawnThing: 1
+    endOfLines:
+      m_PersistentCalls:
+        m_Calls: []
+    pauzeAfterLine: 1
+  - linesName: okay, i'll go back to the planet and search for the kail!
+    lines:
+    - great! good luck!
+    spawnThing: 0
+    endOfLines:
+      m_PersistentCalls:
+        m_Calls: []
+    pauzeAfterLine: 0
+  interactAction: {fileID: -1408574658838749254, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   waitOneInteraction: 0
   inRange:
     m_PersistentCalls:
@@ -492,8 +565,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 62b33cd209cdfa845a4ba58bc4c3f31c, type: 2}
+  m_sharedMaterial: {fileID: 896152165663922417, guid: 62b33cd209cdfa845a4ba58bc4c3f31c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -517,7 +590,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 38.95
   m_fontSizeBase: 0.1
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -686,6 +759,7 @@ MonoBehaviour:
   - yet another test
   - i think this might be enough tests
   interactPossible: 1
+  rambleMode: 0
   nextLineAction: {fileID: -1408574658838749254, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &7980933013579540177
 GameObject:

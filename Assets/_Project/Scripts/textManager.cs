@@ -41,7 +41,7 @@ public class textManager : MonoBehaviour
     {
         dialogueBox.SetActive(false);
 
-        player = playerManager.instance.transform;
+        player = Camera.main.transform;
         foreach (Transform child in transform)
         {
             if (child.CompareTag("inputIndicator"))
@@ -66,7 +66,7 @@ public class textManager : MonoBehaviour
         }
         else
         {
-            player = playerManager.instance.transform;
+            player = Camera.main.transform;
         }
 
         if (nextLineActionPressed)
@@ -99,6 +99,7 @@ public class textManager : MonoBehaviour
                             stopDialogue();
                             interaction.waitOneInteraction = true;
                             interaction.onLinesEnd();
+                            Debug.Log("onLinesEnd");
                         }
                         index++;
                     }
@@ -116,6 +117,7 @@ public class textManager : MonoBehaviour
                         stopDialogue();
                         interaction.waitOneInteraction = true;
                         interaction.onLinesEnd();
+                        Debug.Log("onLinesEnd");
                     }
                 }
             }
@@ -124,6 +126,7 @@ public class textManager : MonoBehaviour
                 stopDialogue();
                 interaction.waitOneInteraction = true;
                 interaction.onLinesEnd();
+                Debug.Log("onLinesEnd");
             }
         }
     }

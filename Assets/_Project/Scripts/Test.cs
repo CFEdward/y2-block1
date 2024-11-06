@@ -5,21 +5,18 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class Test : MonoBehaviour
 {
-    private BoxCollider collider;
-    [SerializeField] private GameObject attachPoint;
+    public MeshRenderer meshRenderer;
+    public SpriteRenderer spriteRenderer;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        collider = GetComponent<BoxCollider>();
+        meshRenderer = GetComponent<MeshRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    void Start()
     {
-        if (other.tag == "Sample")
-        {
-            other.transform.position = attachPoint.transform.position;
-            other.transform.rotation = attachPoint.transform.rotation;
-        }
+        meshRenderer.enabled = false;
+        spriteRenderer.enabled = false;
     }
 }

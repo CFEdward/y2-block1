@@ -120,7 +120,7 @@ public class SceneController : MonoBehaviour
     private void SpawnSittingAlien()
     {
         Debug.Log("-> SceneController::SpawnSittingAlien()");
-
+        //Instantiate(sittingAlien, Vector3.one, Quaternion.identity);
         Vector3 spawnPosition;
 
         // Iterate through each plane found in the scene

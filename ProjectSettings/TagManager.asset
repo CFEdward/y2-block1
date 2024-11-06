@@ -13,6 +13,8 @@ TagManager:
   - inputIndicator
   - Sign
   - ShipAlien
+  - Edible
+  - Poisonous
   layers:
   - Default
   - TransparentFX

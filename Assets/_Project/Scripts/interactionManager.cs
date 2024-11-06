@@ -10,6 +10,7 @@ public class multipleLines
 {
     public string linesName;
     public List<string> lines;
+    public bool spawnThing = false;
     public UnityEvent<int> endOfLines;
     public bool pauzeAfterLine = false;
 }
@@ -124,6 +125,11 @@ public class interactionManager : MonoBehaviour
 
     public void onLinesEnd()
     {
+        if (allLines[linesIndex - 1].spawnThing)
+        {
+            Debug.Log("SHOULD spawn rune");
+            runeMaker.instance.spawnRune();
+        }
         allLines[linesIndex - 1].endOfLines.Invoke(linesIndex);
         if (allLines[linesIndex - 1].pauzeAfterLine)
         {

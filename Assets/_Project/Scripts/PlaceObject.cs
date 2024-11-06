@@ -136,7 +136,7 @@ public class PlaceObject : MonoBehaviour
                 break;
         }
 
-        SceneManager.SetActiveScene(shipScene);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
         objectToSpawn.transform.rotation = spawnRotation;
         StartCoroutine(WaitBeforePlacing());
     }
