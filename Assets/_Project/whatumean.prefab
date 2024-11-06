@@ -154,9 +154,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &5032553737331961650
 MonoBehaviour:
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af53874ed846287468236a6ea3cf7226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badFruit: 0
+  badFruit: 1
   collected: 0
 --- !u!1 &104909557437634740
 GameObject:
@@ -1477,9 +1477,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &1216986509703071554
 MonoBehaviour:
@@ -1648,7 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af53874ed846287468236a6ea3cf7226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badFruit: 0
+  badFruit: 1
   collected: 0
 --- !u!1 &1672010988546140494
 GameObject:
@@ -3837,7 +3837,7 @@ Transform:
   m_GameObject: {fileID: 4120361580174152856}
   serializedVersion: 2
   m_LocalRotation: {x: -0.03159654, y: -0.14368641, z: 0.1365328, w: 0.9796503}
-  m_LocalPosition: {x: -88.385864, y: 2.1990178, z: -326.00507}
+  m_LocalPosition: {x: -88.82, y: 3.83, z: -326.18}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3879,9 +3879,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &2234168488629356760
 MonoBehaviour:
@@ -4994,7 +4994,7 @@ Transform:
   m_GameObject: {fileID: 4740190315448893417}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.07596416, w: 0.99711055}
-  m_LocalPosition: {x: -81.54, y: 2.12, z: -318.3}
+  m_LocalPosition: {x: -81.77, y: 3.59, z: -318.3}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5036,9 +5036,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &3526250330244599535
 MonoBehaviour:
@@ -8141,9 +8141,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &7793540289304368966
 MonoBehaviour:
@@ -8343,7 +8343,7 @@ Transform:
   m_GameObject: {fileID: 7829054181744143991}
   serializedVersion: 2
   m_LocalRotation: {x: 0.03710818, y: -0.48708436, z: 0.06628377, w: 0.870045}
-  m_LocalPosition: {x: -89.34, y: 2.05, z: -318.72}
+  m_LocalPosition: {x: -89.55, y: 3.41, z: -318.72}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8385,9 +8385,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &1440259555203083504
 MonoBehaviour:
@@ -9293,9 +9293,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &4832520944212886042
 MonoBehaviour:
@@ -9464,7 +9464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af53874ed846287468236a6ea3cf7226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badFruit: 0
+  badFruit: 1
   collected: 0
 --- !u!1 &8622117261968984004
 GameObject:
@@ -9786,9 +9786,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &6949917538408256788
 MonoBehaviour:
@@ -9957,7 +9957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af53874ed846287468236a6ea3cf7226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badFruit: 0
+  badFruit: 1
   collected: 0
 --- !u!1 &8720934031737658865
 GameObject:
