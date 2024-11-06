@@ -24,6 +24,9 @@ public class alienScaner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameData.alienScanned == true)
+        {
+            Destroy(gameObject);
+        }
     }
 }

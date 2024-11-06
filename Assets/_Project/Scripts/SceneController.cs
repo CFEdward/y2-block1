@@ -177,7 +177,7 @@ public class SceneController : MonoBehaviour
 
     void Update()
     {
-        if (GameData.alienScanned && !alienAlreadySpawned && SceneManager.GetActiveScene().buildIndex == 1)
+        if (GameData.alienScanned && alienAlreadySpawned == false && SceneManager.GetActiveScene().buildIndex == 1)
         {
             alienAlreadySpawned = true;
             StartCoroutine(SpawnAlienDelay());
