@@ -19,7 +19,7 @@ public class SceneController : MonoBehaviour
     private bool alienAlreadySpawned = false;
 
     //[SerializeField] private InputActionReference togglePlanesAction;
-    [SerializeField] private InputActionReference rightActivateAction;
+    //[SerializeField] private InputActionReference rightActivateAction;
 
     [SerializeField] private InputActionReference switchSceneAction;
 
@@ -36,6 +36,9 @@ public class SceneController : MonoBehaviour
 
     public static Vector3 playerShipPosition;
     public static Vector3 playerPlanetPosition;
+
+    private Scene persistentScene;
+    private Scene shipScene;
 
     protected void OnEnable()
     {
@@ -65,10 +68,13 @@ public class SceneController : MonoBehaviour
         //togglePlanesAction.action.performed += OnTogglePlanesAction;
         //planeManager.planesChanged += OnPlanesChanged;
         anchorManager.anchorsChanged += OnAnchorsChanged;
-        rightActivateAction.action.performed += OnRightActivateAction;
+        //rightActivateAction.action.performed += OnRightActivateAction;
 
         SceneLoader.Instance.OnLoadBegin.AddListener(SaveLocation);
         SceneLoader.Instance.OnLoadEnd.AddListener(LoadLocation);
+
+        persistentScene = SceneManager.GetSceneByBuildIndex(0);
+        shipScene = SceneManager.GetSceneByBuildIndex(1);
     }
 
     private void OnAnchorsChanged(ARAnchorsChangedEventArgs obj)
@@ -83,7 +89,7 @@ public class SceneController : MonoBehaviour
 
     private void OnRightActivateAction(InputAction.CallbackContext obj)
     {
-        //SpawnsittingAlien();
+        //SpawnSittingAlien();
     }
 
     public void OnSwitchSceneAction(InputAction.CallbackContext obj)
@@ -111,9 +117,9 @@ public class SceneController : MonoBehaviour
         SceneLoader.Instance.LoadNewScene("PlanetScene");
     }
 
-    private void SpawnsittingAlien()
+    private void SpawnSittingAlien()
     {
-        Debug.Log("-> SceneController::SpawnsittingAlien()");
+        Debug.Log("-> SceneController::SpawnSittingAlien()");
 
         Vector3 spawnPosition;
 
@@ -165,7 +171,7 @@ public class SceneController : MonoBehaviour
         //togglePlanesAction.action.performed -= OnTogglePlanesAction;
         //planeManager.planesChanged -= OnPlanesChanged;
         anchorManager.anchorsChanged -= OnAnchorsChanged;
-        rightActivateAction.action.performed -= OnRightActivateAction;
+        //rightActivateAction.action.performed -= OnRightActivateAction;
     }
 
 
@@ -174,8 +180,17 @@ public class SceneController : MonoBehaviour
         if (GameData.alienScanned && !alienAlreadySpawned && SceneManager.GetActiveScene().buildIndex == 1)
         {
             alienAlreadySpawned = true;
-            SpawnsittingAlien();
+            StartCoroutine(SpawnAlienDelay());
         }
+    }
+
+    private IEnumerator SpawnAlienDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.SetActiveScene(persistentScene);
+        SpawnSittingAlien();
+        Physics.SyncTransforms();
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
     }
 
     /*

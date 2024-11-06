@@ -197,7 +197,14 @@ public class PlaceObject : MonoBehaviour
                 }
             }
 
-            objectToSpawn.AddComponent<ToggleVisibility>();
+            if (objectToSpawn.CompareTag("Sign"))
+            {
+                objectToSpawn.GetComponentInChildren<MeshRenderer>().gameObject.AddComponent<ToggleVisibility>();
+            }
+            else
+            {
+                objectToSpawn.AddComponent<ToggleVisibility>();
+            }
             //objectToSpawnRenderer.material = originalMaterial;
             objectToSpawn.GetComponent<DetectSurface>().enabled = false;
             successfullySpawned = false;

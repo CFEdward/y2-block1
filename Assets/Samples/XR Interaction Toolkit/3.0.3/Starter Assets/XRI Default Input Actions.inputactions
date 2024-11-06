@@ -819,6 +819,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "NextLine",
+                    "type": "Button",
+                    "id": "e14d9d7a-e89a-4679-8f49-44d59e2aafd3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1011,12 +1020,23 @@
                 },
                 {
                     "name": "",
-                    "id": "9290eb7d-da12-4719-874f-e5a3864e2da7",
-                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "id": "c90a4cd2-6915-4548-99c5-07087b5844d9",
+                    "path": "<MetaAimHand>/middlePressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Switch Scenes",
+                    "action": "NextLine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c536f258-2263-4ee4-a027-696a6235e5d2",
+                    "path": "<OculusTouchController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextLine",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

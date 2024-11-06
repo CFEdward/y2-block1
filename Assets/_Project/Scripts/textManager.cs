@@ -40,7 +40,7 @@ public class textManager : MonoBehaviour
     {
         dialogueBox.SetActive(false);
 
-        player = playerManager.instance.transform;
+        player = Camera.main.transform;
         foreach (Transform child in transform)
         {
             if (child.CompareTag("inputIndicator"))
@@ -62,6 +62,10 @@ public class textManager : MonoBehaviour
             direction.y = 0;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * turnSmoothSpeed);
+        }
+        else
+        {
+            player = Camera.main.transform;
         }
 
         if (nextLineActionPressed)

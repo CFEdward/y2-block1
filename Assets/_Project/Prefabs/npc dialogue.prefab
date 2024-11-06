@@ -686,7 +686,7 @@ MonoBehaviour:
   - yet another test
   - i think this might be enough tests
   interactPossible: 1
-  nextLineAction: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  nextLineAction: {fileID: -1408574658838749254, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &7980933013579540177
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ TagManager:
   - dialogueBox
   - inputIndicator
   - Sign
+  - ShipAlien
   layers:
   - Default
   - TransparentFX

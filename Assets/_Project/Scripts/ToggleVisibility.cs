@@ -8,11 +8,25 @@ public class ToggleVisibility : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            gameObject.GetComponent<Renderer>().enabled = true;
+            if (gameObject.CompareTag("ShipAlien"))
+            {
+                gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+            }
+            else
+            {
+                gameObject.GetComponent<Renderer>().enabled = true;
+            }
         }
         else
         {
-            gameObject.GetComponent<Renderer>().enabled = false;
+            if (gameObject.CompareTag("ShipAlien"))
+            {
+                gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+            }
+            else
+            {
+                gameObject.GetComponent<Renderer>().enabled = false;
+            }
         }
     }
 }
