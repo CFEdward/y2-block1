@@ -1627,7 +1627,7 @@ MonoBehaviour:
   debugMode: 0
   rightActivateAction: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   switchSceneAction: {fileID: -3747596861492837508, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  grabbableCube: {fileID: 3012843220432904080, guid: d172d01215adbc94698c230b76e1c9f2, type: 3}
+  sittingAlien: {fileID: 0}
 --- !u!114 &1890031081602988042
 MonoBehaviour:
   m_ObjectHideFlags: 0

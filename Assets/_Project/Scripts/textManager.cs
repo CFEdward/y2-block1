@@ -23,6 +23,7 @@ public class textManager : MonoBehaviour
     private int index;
     public bool interactPossible = true;
     private bool typing;
+    [SerializeField] bool rambleMode = false;
 
 
     [SerializeField] private InputActionReference nextLineAction;
@@ -104,9 +105,9 @@ public class textManager : MonoBehaviour
                 }
                 else
                 {
-                    if (index < lines.Count)
+                    if (index - 1 < lines.Count)
                     {
-                        textBox.text = lines[index];
+                        textBox.text = lines[index - 1];
                         typing = false;
                     }
                     else
@@ -120,6 +121,8 @@ public class textManager : MonoBehaviour
             else
             {
                 stopDialogue();
+                interaction.waitOneInteraction = true;
+                interaction.onLinesEnd();
             }   
         }
     }
@@ -147,6 +150,15 @@ public class textManager : MonoBehaviour
 
     IEnumerator typeOutLine(string lineToType)
     {
+        if (!rambleMode)
+        {
+            interactPossible = false;
+        }
+        else
+        {
+            interactPossible = true;
+        }
+
         typing = true;
         textBox.text = string.Empty;
         foreach (char character in lineToType.ToCharArray())
@@ -155,6 +167,14 @@ public class textManager : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
         typing = false;
+
+        if (rambleMode)
+        {
+            yield return new WaitForSeconds(textSpeed * 5);
+            onNextLineInput();
+            //textSpeed = 0;
+        }
+
         //debug:
         //onNextLineInput();
     }

@@ -158,6 +158,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &291465127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 291465129}
+  - component: {fileID: 291465128}
+  m_Layer: 0
+  m_Name: rune
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &291465128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291465127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711c6be69221e854a9c4b0894c67470c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edibleRune: {fileID: 0}
+  poisonRune: {fileID: 0}
+--- !u!4 &291465129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291465127}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.922, y: 0, z: 0.039}
+  m_LocalScale: {x: 0.26, y: 0.26, z: 0.26}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &387462094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4779813318549682554, guid: 870459f1cb8d7b7428337cc5935feb67, type: 3}
@@ -173,7 +219,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1552403245089541920, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.922
+      value: 0.214
       objectReference: {fileID: 0}
     - target: {fileID: 1552403245089541920, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: m_LocalPosition.y
@@ -181,7 +227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1552403245089541920, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.039
+      value: -2.629
       objectReference: {fileID: 0}
     - target: {fileID: 1552403245089541920, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -215,6 +261,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: sitting ship alien
       objectReference: {fileID: 0}
+    - target: {fileID: 3723943302240791899, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461477443729365512, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461477443729365512, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_fontSize
+      value: 38.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461477443729365512, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 62b33cd209cdfa845a4ba58bc4c3f31c, type: 2}
+    - target: {fileID: 6461477443729365512, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 896152165663922417, guid: 62b33cd209cdfa845a4ba58bc4c3f31c, type: 2}
+    - target: {fileID: 6461477443729365512, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487719566093485336, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487719566093485336, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_fontSize
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487719566093485336, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 62b33cd209cdfa845a4ba58bc4c3f31c, type: 2}
+    - target: {fileID: 6487719566093485336, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 896152165663922417, guid: 62b33cd209cdfa845a4ba58bc4c3f31c, type: 2}
+    - target: {fileID: 6487719566093485336, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.size
       value: 8
@@ -229,27 +319,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[2].linesName
-      value: how could i learn the language?
+      value: but how do i do that?
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[3].linesName
-      value: how does that teach me the rune?
+      value: you can?
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[4].linesName
-      value: wow, so that means hello!
-      objectReference: {fileID: 0}
-    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
-      propertyPath: allLines.Array.data[5].linesName
-      value: so, could you learn me the other runes?
-      objectReference: {fileID: 0}
-    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
-      propertyPath: allLines.Array.data[6].linesName
       value: okaaay, but what are kail, and where is this kailyard?
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[5].linesName
+      value: how does this teach me the rune?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].linesName
+      value: wow, so that means edible!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[7].linesName
-      value: okay, i'll go back to the planet and search for the kail
+      value: okay, i'll go back to the planet and search for the kail!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[5].pauzeAfterLine
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].pauzeAfterLine
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[0].lines.Array.size
@@ -261,23 +359,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[2].lines.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[3].lines.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[4].lines.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[5].lines.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[6].lines.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[7].lines.Array.size
@@ -305,12 +403,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[2].lines.Array.data[0]
-      value: that's simple! i'll teach you how to read our runes!
+      value: that's simple! i can teach you how to read our runes!
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[2].lines.Array.data[1]
-      value: just use the pen i gave you to trace out the path that is highlighted,
-        and you'll learn the rune!
+      value: buuut, i'm a bit hungry, could you first get me some kail from the kailyard,
+        then i'll teach you more.
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[2].lines.Array.data[2]
@@ -318,28 +416,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[3].lines.Array.data[0]
-      value: that is how our people convey information, try it!
+      value: i could teach you...
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[3].lines.Array.data[1]
-      value: just use the pen i gave you to trace out the path that is highlighted,
-        and you'll learn the rune!
+      value: 'but i''m hungry! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[3].lines.Array.data[2]
+      value: get me some kail from the kailyard, and i'll teach you!
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[4].lines.Array.data[0]
-      value: yep, pretty neat huh?
+      value: 'they are the things i eat, and there should be a kailyard close to
+        the cage i was locked in. '
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[4].lines.Array.data[1]
-      value: yep, neat huh?
+      value: 'there are two yards, one with kail that is for eating, '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].lines.Array.data[2]
+      value: and one that is used to keep my less likable neighbours away!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].lines.Array.data[3]
+      value: here, i'll teach you the runes for edible and poisonous, T and U!
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[5].lines.Array.data[0]
-      value: i could...
+      value: that is how our people convey information, try it!
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[5].lines.Array.data[1]
-      value: 'but i''m hungry! '
+      value: trace in the outline of the rune.
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[5].lines.Array.data[2]
@@ -347,13 +457,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[6].lines.Array.data[0]
-      value: they are the things i eat, and there should be a kailyard close to the
-        cage i was locked in.
+      value: yep, pretty neat huh?
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[6].lines.Array.data[1]
-      value: there are two yards, one with kail that is for eating, and one that
-        is used to keep the others away.
+      value: now do poisonous as well!
       objectReference: {fileID: 0}
     - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       propertyPath: allLines.Array.data[6].lines.Array.data[2]
@@ -371,6 +479,130 @@ PrefabInstance:
       propertyPath: allLines.Array.data[7].lines.Array.data[2]
       value: here, i'll teach you the runes for edible and poisonous
       objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].endOfLines.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].endOfLines.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[2].endOfLines.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].endOfLines.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].endOfLines.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1308125137}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1308125137}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1308125137}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1308125137}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[2].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: createEdibleRune
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: createPoisonRune
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: createEdibleRune
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: createPoisonRune
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: runeMaker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: runeMaker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: runeMaker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: runeMaker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[0].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[1].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[4].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987886884600210803, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: allLines.Array.data[6].endOfLines.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766225277875275460, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -378,6 +610,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2216032882316121498, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1308125132}
+    - targetCorrespondingSourceObject: {fileID: 2216032882316121498, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1308125137}
   m_SourcePrefab: {fileID: 100100000, guid: f94434ecf7a4043468b0ea72234644ad, type: 3}
 --- !u!1 &535842385
 GameObject:
@@ -1147,11 +1382,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308125127}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e8021e6f27ca994c9181259b2d5c150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1308125137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308125127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711c6be69221e854a9c4b0894c67470c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edibleRune: {fileID: 6227302432684558706, guid: a8a9763e394bb8e46878fafbcf3f109b, type: 3}
+  poisonRune: {fileID: 6227302432684558706, guid: 4cff6da987e0eba4bb7fb791a309d57b, type: 3}
 --- !u!1 &1331937574 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -2235,4 +2484,5 @@ SceneRoots:
   - {fileID: 2092139010}
   - {fileID: 2105827454}
   - {fileID: 888869343}
+  - {fileID: 291465129}
   - {fileID: 411862407}

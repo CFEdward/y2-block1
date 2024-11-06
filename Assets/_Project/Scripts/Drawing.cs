@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Drawing : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Drawing : MonoBehaviour
 
     [SerializeField] private TextMeshPro text;
     private int timesCompleted = 0;
+
 
     private void Awake()
     {
@@ -51,6 +53,8 @@ public class Drawing : MonoBehaviour
         {
             StartCoroutine(DisplayText(true));
         }
+
+
     }
 
     private bool CheckContinuity()
@@ -90,6 +94,7 @@ public class Drawing : MonoBehaviour
                 yield return new WaitForSeconds(2f);
                 if (timesCompleted >= 2)
                 {
+                    GameData.endDraw.Invoke();
                     Destroy(gameObject.transform.parent.gameObject);
 
                 }
