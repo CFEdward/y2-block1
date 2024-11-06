@@ -11,7 +11,6 @@ public class ToggleVisibility : MonoBehaviour
             if (gameObject.CompareTag("ShipAlien"))
             {
                 gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-                gameObject.GetComponent<Rigidbody>().useGravity = true;
             }
             else
             {

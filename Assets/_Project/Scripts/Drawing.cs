@@ -90,6 +90,7 @@ public class Drawing : MonoBehaviour
                 if (timesCompleted >= 2)
                 {
                     GameData.endDraw.Invoke();
+                    GameData.drawingDone = true;
                     Destroy(gameObject.transform.parent.gameObject);
                 }
                 else

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SampleCollection : MonoBehaviour
 {
-
+    [SerializeField] private bool badFruit;
     [SerializeField] private bool collected;
 
     // Start is called before the first frame update
@@ -20,6 +20,14 @@ public class SampleCollection : MonoBehaviour
         if (!collected)
         {
             collected = true;
+            if (badFruit)
+            {
+                GameData.wrongFruitCollected = true;
+            }
+            else
+            {
+                GameData.fruitCollected = true;
+            }
             if (sampleSelector.Instance != null)
             {
                 Debug.Log("minstens dit werkt");
@@ -36,6 +44,9 @@ public class SampleCollection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (collected)
+        {
+            transform.localScale = new Vector3(0.28372f, 0.28372f, 0.28372f);
+        }
     }
 }

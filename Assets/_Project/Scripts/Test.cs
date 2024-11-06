@@ -18,5 +18,6 @@ public class Test : MonoBehaviour
     {
         meshRenderer.enabled = false;
         spriteRenderer.enabled = false;
+        if (GameData.drawingDone) Destroy(gameObject);
     }
 }
