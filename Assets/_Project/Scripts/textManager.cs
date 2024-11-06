@@ -15,7 +15,7 @@ public class textManager : MonoBehaviour
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private interactionManager interaction;
     private bool inDialogue;
-    [SerializeField]private TextMeshProUGUI textBox;
+    [SerializeField] private TextMeshProUGUI textBox;
     private Transform player;
     [SerializeField] float turnSmoothSpeed;
     public float textSpeed;
@@ -23,6 +23,7 @@ public class textManager : MonoBehaviour
     private int index;
     public bool interactPossible = true;
     private bool typing;
+    [SerializeField] bool rambleMode = false;
 
 
     [SerializeField] private InputActionReference nextLineAction;
@@ -40,7 +41,7 @@ public class textManager : MonoBehaviour
     {
         dialogueBox.SetActive(false);
 
-        player = Camera.main.transform;
+        player = playerManager.instance.transform;
         foreach (Transform child in transform)
         {
             if (child.CompareTag("inputIndicator"))
@@ -65,7 +66,7 @@ public class textManager : MonoBehaviour
         }
         else
         {
-            player = Camera.main.transform;
+            player = playerManager.instance.transform;
         }
 
         if (nextLineActionPressed)
@@ -97,6 +98,7 @@ public class textManager : MonoBehaviour
                         {
                             stopDialogue();
                             interaction.waitOneInteraction = true;
+                            interaction.onLinesEnd();
                         }
                         index++;
                     }
@@ -104,22 +106,25 @@ public class textManager : MonoBehaviour
                 }
                 else
                 {
-                    if (index < lines.Count)
+                    if (index - 1 < lines.Count)
                     {
-                        textBox.text = lines[index];
+                        textBox.text = lines[index - 1];
                         typing = false;
                     }
                     else
                     {
                         stopDialogue();
                         interaction.waitOneInteraction = true;
+                        interaction.onLinesEnd();
                     }
                 }
             }
             else
             {
                 stopDialogue();
-            }   
+                interaction.waitOneInteraction = true;
+                interaction.onLinesEnd();
+            }
         }
     }
 
@@ -141,11 +146,20 @@ public class textManager : MonoBehaviour
         inDialogue = false;
         dialogueBox.SetActive(false);
         interactPossible = true;
-        
+
     }
 
     IEnumerator typeOutLine(string lineToType)
     {
+        if (!rambleMode)
+        {
+            interactPossible = false;
+        }
+        else
+        {
+            interactPossible = true;
+        }
+
         typing = true;
         textBox.text = string.Empty;
         foreach (char character in lineToType.ToCharArray())
@@ -154,6 +168,14 @@ public class textManager : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
         typing = false;
+
+        if (rambleMode)
+        {
+            yield return new WaitForSeconds(textSpeed * 5);
+            onNextLineInput();
+            //textSpeed = 0;
+        }
+
         //debug:
         //onNextLineInput();
     }
@@ -366,6 +388,5 @@ public class textManager : MonoBehaviour
     */
 
 }
-
 
 

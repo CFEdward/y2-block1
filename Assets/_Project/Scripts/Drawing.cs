@@ -89,6 +89,7 @@ public class Drawing : MonoBehaviour
                 yield return new WaitForSeconds(2f);
                 if (timesCompleted >= 2)
                 {
+                    GameData.endDraw.Invoke();
                     Destroy(gameObject.transform.parent.gameObject);
                 }
                 else

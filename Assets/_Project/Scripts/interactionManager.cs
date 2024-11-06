@@ -10,9 +10,11 @@ public class multipleLines
 {
     public string linesName;
     public List<string> lines;
+    public UnityEvent<int> endOfLines;
+    public bool pauzeAfterLine = false;
 }
 
-public class interactionManager: MonoBehaviour
+public class interactionManager : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private GameObject inputIndicator;
@@ -24,6 +26,8 @@ public class interactionManager: MonoBehaviour
     private float distance;
     [SerializeField] float distanceThreshold = 10f;
     [SerializeField] private bool inDistance = false;
+    [SerializeField] private bool paused = false;
+
 
     private int linesIndex = 0;
 
@@ -67,6 +71,8 @@ public class interactionManager: MonoBehaviour
         player = playerManager.instance.transform;
         textManager = GetComponentInChildren<textManager>();
 
+        GameData.endDraw.AddListener(onUnPauze);
+
         //debug:
         //onInteractInput();
     }
@@ -96,7 +102,8 @@ public class interactionManager: MonoBehaviour
         if (textManager.interactPossible && inDistance && !hasInteracted && linesIndex < allLines.Count)
         {
             inputIndicator.SetActive(true);
-        } else
+        }
+        else
         {
             inputIndicator.SetActive(false);
         }
@@ -115,10 +122,28 @@ public class interactionManager: MonoBehaviour
         }
     }
 
+    public void onLinesEnd()
+    {
+        allLines[linesIndex - 1].endOfLines.Invoke(linesIndex);
+        if (allLines[linesIndex - 1].pauzeAfterLine)
+        {
+            onPauze();
+        }
+    }
+
+    public void onPauze()
+    {
+        paused = true;
+    }
+    public void onUnPauze()
+    {
+        paused = false;
+    }
+
     public void onInteractInput()
     {
         interactActionPressed = false;
-        if (inDistance && textManager.interactPossible && !hasInteracted && linesIndex < allLines.Count)
+        if (inDistance && textManager.interactPossible && !hasInteracted && linesIndex < allLines.Count && !paused)
         {
             interact.Invoke(allLines[linesIndex].lines);
             linesIndex++;
@@ -133,9 +158,9 @@ public class interactionManager: MonoBehaviour
             {
                 if (linesIndex < allLines.Count)
                 {
-
                     inputIndicatorText.text = allLines[linesIndex].linesName;
-                } else
+                }
+                else
                 {
                     dialogueDone.Invoke();
                 }
