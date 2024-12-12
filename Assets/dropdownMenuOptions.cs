@@ -11,34 +11,26 @@ public class dropdownMenuOptions : MonoBehaviour
 
     private int currentOption;
 
+
     public void dropdownUpdate()
     {
         currentOption = dropdown.value;
+        //make the sampleSelector show the sample you just selected in the dropdown menu
         sampleSelector.Instance.showSample(currentOption);
     }
 
     public void showOptions(List<GameObject> collectedSamples)
-    {
+    { 
         collectedSampleNames.Clear();
         foreach (GameObject sample in collectedSamples)
         {
-            collectedSampleNames.Add (sample.name);
+            //get the name of the sample, and add it to a list of names
+            collectedSampleNames.Add(sample.name);
         }
         dropdown.ClearOptions();
+        //add all the names in the lists to the dropdown menu
         dropdown.AddOptions(collectedSampleNames);
+        //make it select the correct sample again
         dropdown.value = currentOption;
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
